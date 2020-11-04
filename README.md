@@ -1,5 +1,4 @@
 # Prototipo_Educativo
-App educativa
 ## APP EDUCATIVA
 Prototipo de una aplicacion para la enseñanza de programacion de a jovenes
 y adultos, de manera didactica y sencilla. 
