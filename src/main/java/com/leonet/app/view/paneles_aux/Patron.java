@@ -60,7 +60,7 @@ public interface Patron {
     public static Font CIUDATELLA_REGULAR = cambiarFuente("Ciutadella Rounded Regular.ttf", 12);
 
 
-    public static String resUrlBase = "src\\main\\resources\\";
+    public static String resUrlBase = "src/main/resources/";
 
     /**
      * NO USAR FUERA PATRON
@@ -73,7 +73,7 @@ public interface Patron {
         Font fuente = null;
         InputStream myStream;
         try {
-            myStream = new BufferedInputStream(new FileInputStream(resUrlBase + "fonts\\" + font + ".ttf"));
+            myStream = new BufferedInputStream(new FileInputStream(resUrlBase + "fonts/" + font + ".ttf"));
             fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
             fuente = fuente.deriveFont(Font.PLAIN, px);
         } catch (FontFormatException | IOException ex) {

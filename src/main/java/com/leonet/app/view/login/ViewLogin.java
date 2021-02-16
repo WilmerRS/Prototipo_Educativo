@@ -52,7 +52,7 @@ public class ViewLogin extends JFrame implements Patron {
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension((int) (ANCHO * 0.3), (int) (ALTO * 0.5)));
         this.setTitle(titulo);
-        this.setIconImage(new ImageIcon(resUrlBase + "Iconos\\logo1.png").getImage());
+        this.setIconImage(new ImageIcon(resUrlBase + "Iconos/logo1.png").getImage());
         paneles();
         agregarEventos();
 

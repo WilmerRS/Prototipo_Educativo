@@ -97,13 +97,13 @@ public class PnProblema extends JPanel implements Patron {
         pTitulo.add(jTitulo, BorderLayout.WEST);
         
         
-        //icono = new ImageIcon(resUrlBase + "Iconos\\icon2.png");
+        //icono = new ImageIcon(resUrlBase + "Iconos/icon2.png");
         //jIcono = new JLabel();
         //jIcono.setPreferredSize(new Dimension((int) (ANCHO * 0.10), (int) (ALTO * 0.05)));
         //Icon icon = new ImageIcon(icono.getImage().getScaledInstance((int) (ANCHO * 0.10), (int) (ALTO * 0.05), Image.SCALE_DEFAULT));
         //jIcono.setIcon(icon);
 
-        IconMod iconMod = new IconMod(resUrlBase + "Iconos\\icon2.png", (int) (ANCHO * 0.10), (int) (ALTO * 0.05));
+        IconMod iconMod = new IconMod(resUrlBase + "Iconos/icon2.png", (int) (ANCHO * 0.10), (int) (ALTO * 0.05));
         pTitulo.add(iconMod, BorderLayout.EAST);
         
         pContenido = new JPanel();

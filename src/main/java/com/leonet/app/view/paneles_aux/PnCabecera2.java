@@ -79,13 +79,13 @@ public class PnCabecera2 extends JPanel implements Patron {
         pCentral.setBackground(COLOR_PRINCIPAL);
         pFondoTodo.add(pCentral, BorderLayout.CENTER);
 
-        //icono = new ImageIcon(resUrlBase + "Iconos\\logo1.png");
+        //icono = new ImageIcon(resUrlBase + "Iconos/logo1.png");
         //jIcono = new JLabel();
         // jIcono.setPreferredSize(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.07)));
         // Icon icon = new ImageIcon(icono.getImage().getScaledInstance((int) (ANCHO * 0.04), (int) (ALTO * 0.07), Image.SCALE_DEFAULT));
         //jIcono.setIcon(icon);
 
-        IconMod iconMod = new IconMod(resUrlBase + "Iconos\\logo1.png", (int) (ANCHO * 0.04), (int) (ALTO * 0.07));
+        IconMod iconMod = new IconMod(resUrlBase + "Iconos/logo1.png", (int) (ANCHO * 0.04), (int) (ALTO * 0.07));
         pCentral.add(iconMod);
 
 
