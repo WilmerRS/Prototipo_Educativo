@@ -10,9 +10,8 @@
 
 package com.leonet.app.controller;
 
-import com.leonet.app.controller.loginController.LoginController;
+import com.leonet.app.controller.loginController.ViewLoginController;
 import com.leonet.app.model.Model;
-import com.leonet.app.view.inicio.ViewPrincipal;
 import com.leonet.app.view.login.ViewLogin;
 
 /**
@@ -22,14 +21,14 @@ import com.leonet.app.view.login.ViewLogin;
  */
 public class Controller {
 
-    // Modelos
+    // Models
     private Model model;
 
-    // Vistas
+    // Views
     private ViewLogin viewLogin;
 
-    // Controladores
-    private LoginController loginController;
+    // Controllers
+    private ViewLoginController loginController;
 
     /**
      * Permite construir el controlador base, que une el la interfaz con el modelo
@@ -40,10 +39,10 @@ public class Controller {
     public Controller(Model model, ViewLogin view) {
         this.model = model;
         this.viewLogin = view;
-        iniciarControllers();
+        initControllers();
     }
 
-    private void iniciarControllers() {
-        loginController = new LoginController(model, viewLogin);
+    private void initControllers() {
+        loginController = new ViewLoginController(model, viewLogin);
     }
 }

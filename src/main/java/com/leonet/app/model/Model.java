@@ -10,6 +10,9 @@
 
 package com.leonet.app.model;
 
+import com.leonet.app.model.databaseConection.ConectionBD;
+import com.leonet.app.model.user.Usuario;
+
 /**
  * Clase que tiene toda la parte logica del programa
  *

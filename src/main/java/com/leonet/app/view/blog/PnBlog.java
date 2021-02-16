@@ -9,10 +9,10 @@
  */
 package com.leonet.app.view.blog;
 
-import com.leonet.app.view.paneles_aux.Boton;
-import com.leonet.app.view.paneles_aux.Patron;
-import com.leonet.app.view.paneles_aux.RoundedPanel;
-import com.leonet.app.view.paneles_aux.TextField;
+import com.leonet.app.view.shared.Boton;
+import com.leonet.app.view.shared.Patron;
+import com.leonet.app.view.shared.RoundedPanel;
+import com.leonet.app.view.shared.TextField;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

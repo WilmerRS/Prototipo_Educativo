@@ -9,16 +9,13 @@
  */
 package com.leonet.app.view.login;
 
-import com.leonet.app.view.blog.ViewBlog;
-import com.leonet.app.view.inicio.ViewPrincipal;
-import com.leonet.app.view.paneles_aux.Patron;
-import com.leonet.app.view.paneles_aux.PnCabecera2;
-import com.leonet.app.view.paneles_aux.PnInfo;
+import com.leonet.app.view.home.PnBotones;
+import com.leonet.app.view.shared.Patron;
+import com.leonet.app.view.shared.PnCabecera2;
+import com.leonet.app.view.shared.PnInfo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -34,9 +31,8 @@ public class ViewLogin extends JFrame implements Patron {
     private JPanel pRelleno;
 
     private PnCabecera2 pCabecera;
-    private ViewPrincipal ViewPrincipal;
+    private PnBotones.ViewPrincipal ViewPrincipal;
     private PnInfo pInformacion;
-    private ViewBlog ViewBlog;
     private PnLogin pLogin;
 
     private String titulo = "Login";
@@ -44,18 +40,16 @@ public class ViewLogin extends JFrame implements Patron {
     public boolean acceso = false;
 
     public ViewLogin() {
-        iniciarComponentes();
+        initComponent();
         this.setLocationRelativeTo(null);
     }
 
-    private void iniciarComponentes() {
+    private void initComponent() {
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.setMinimumSize(new Dimension((int) (ANCHO * 0.3), (int) (ALTO * 0.5)));
+        this.setMinimumSize(new Dimension((int) (ANCHO * 0.35), (int) (ALTO * 0.5)));
         this.setTitle(titulo);
-        this.setIconImage(new ImageIcon(resUrlBase + "Iconos\\logo1.png").getImage());
+        this.setIconImage(new ImageIcon(resUrlBase + "Iconos/logo1.png").getImage());
         paneles();
-        agregarEventos();
-
     }
 
     private void paneles() {
@@ -92,27 +86,10 @@ public class ViewLogin extends JFrame implements Patron {
         pack();
     }
 
-    private void agregarEventos() {
 
-        ActionListener clickBlog = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ViewBlog = new ViewBlog();
-                ViewBlog.setVisible(true);
-                ocultarLogin();
-            }
 
-        };
-        pCabecera.getBtnBlog().addActionListener(clickBlog);
-
-        pLogin.getcUsuario().getTxtField().requestFocus(true);
-    }
-
-    private void ocultarLogin() {
-        try {
-            this.setVisible(false);
-        } catch (Exception e) {
-        }
+    public PnCabecera2 getpCabecera() {
+        return pCabecera;
     }
 
     public PnLogin getpLogin() {

@@ -1,80 +1,66 @@
-com/leonet/app/controller/loginController/LoginController.java
- com.leonet.app.controller.loginController.LoginController
- com.leonet.app.controller.loginController.LoginController$1
-com/leonet/app/view/Registrar.java
- com.leonet.app.view.Registrar
-com/leonet/app/view/View.java
- com.leonet.app.view.View
-com/leonet/app/view/paneles_aux/PnInfo.java
- com.leonet.app.view.paneles_aux.PnInfo
-com/leonet/app/controller/Controller.java
- com.leonet.app.controller.Controller
-com/leonet/app/model/Model.java
- com.leonet.app.model.Model
-com/leonet/app/view/ayuda/PnAyuda.java
- com.leonet.app.view.ayuda.PnAyuda
-com/leonet/app/view/Login.java
- com.leonet.app.view.Login
-com/leonet/app/view/paneles_aux/PnRelleno.java
- com.leonet.app.view.paneles_aux.PnRelleno
-com/leonet/app/view/paneles_aux/PnRellenoSur.java
- com.leonet.app.view.paneles_aux.PnRellenoSur
-com/leonet/app/view/inicio/PnCabecera.java
- com.leonet.app.view.inicio.PnCabecera
+com/leonet/app/view/blog/PnBlog.java
+ com.leonet.app.view.blog.PnBlog
+com/leonet/app/view/shared/PnRelleno.java
+ com.leonet.app.view.shared.PnRelleno
+com/leonet/app/view/shared/IconMod.java
+ com.leonet.app.view.shared.IconMod
+com/leonet/app/model/databaseConection/SentenciasSQL.java
+ com.leonet.app.model.databaseConection.SentenciasSQL
+com/leonet/app/model/user/Usuario.java
+ com.leonet.app.model.user.Usuario
+com/leonet/app/controller/loginController/ViewLoginController.java
+ com.leonet.app.controller.loginController.ViewLoginController
+com/leonet/app/view/shared/PnInicioSesion.java
+ com.leonet.app.view.shared.PnInicioSesion
 com/leonet/app/Main.java
  com.leonet.app.Main
-com/leonet/app/model/SentenciasSQL.java
- com.leonet.app.model.SentenciasSQL
-com/leonet/app/view/inicio/ViewPrincipal.java
- com.leonet.app.view.inicio.ViewPrincipal
- com.leonet.app.view.inicio.ViewPrincipal$1
-com/leonet/app/model/PasswordAuthentication.java
- com.leonet.app.model.PasswordAuthentication
-com/leonet/app/model/ConectionBD.java
- com.leonet.app.model.ConectionBD
-com/leonet/app/view/paneles_aux/IconMod.java
- com.leonet.app.view.paneles_aux.IconMod
-com/leonet/app/view/paneles_aux/Patron.java
- com.leonet.app.view.paneles_aux.Patron
+com/leonet/app/view/home/ViewPrincipal.java
+ com.leonet.app.view.home.ViewPrincipal
+ com.leonet.app.view.home.ViewPrincipal$1
+com/leonet/app/view/shared/Boton.java
+ com.leonet.app.view.shared.Boton
+ com.leonet.app.view.shared.Boton$1
+ com.leonet.app.view.shared.Boton$2
+com/leonet/app/view/shared/PnRellenoSur.java
+ com.leonet.app.view.shared.PnRellenoSur
+com/leonet/app/model/databaseConection/ConectionBD.java
+ com.leonet.app.model.databaseConection.ConectionBD
+com/leonet/app/view/home/PnBotones.java
+ com.leonet.app.view.home.PnBotones
+com/leonet/app/view/home/PnProblema.java
+ com.leonet.app.view.home.PnProblema
+com/leonet/app/view/shared/RoundedPanel.java
+ com.leonet.app.view.shared.RoundedPanel
+com/leonet/app/view/shared/PnInfo.java
+ com.leonet.app.view.shared.PnInfo
+com/leonet/app/view/home/PnNivel.java
+ com.leonet.app.view.home.PnNivel
+com/leonet/app/model/user/PasswordAuthentication.java
+ com.leonet.app.model.user.PasswordAuthentication
+com/leonet/app/view/help/PnHelp.java
+ com.leonet.app.view.help.PnHelp
 com/leonet/app/view/login/ViewLogin.java
  com.leonet.app.view.login.ViewLogin
- com.leonet.app.view.login.ViewLogin$1
-com/leonet/app/view/paneles_aux/PnCabecera2.java
- com.leonet.app.view.paneles_aux.PnCabecera2
-com/leonet/app/view/inicio/PnBotones.java
- com.leonet.app.view.inicio.PnBotones
-com/leonet/app/model/Usuario.java
- com.leonet.app.model.Usuario
 com/leonet/app/view/blog/ViewBlog.java
  com.leonet.app.view.blog.ViewBlog
  com.leonet.app.view.blog.ViewBlog$1
-com/leonet/app/view/blog/PnBlog.java
- com.leonet.app.view.blog.PnBlog
-com/leonet/app/view/paneles_aux/TextField.java
- com.leonet.app.view.paneles_aux.TextField
- com.leonet.app.view.paneles_aux.TextField$1
- com.leonet.app.view.paneles_aux.TextField$2
- com.leonet.app.view.paneles_aux.TextField$3
-com/leonet/app/view/paneles_aux/Boton.java
- com.leonet.app.view.paneles_aux.Boton
- com.leonet.app.view.paneles_aux.Boton$1
- com.leonet.app.view.paneles_aux.Boton$2
-com/leonet/app/view/inicio/PnNivel.java
- com.leonet.app.view.inicio.PnNivel
-com/leonet/app/view/paneles_aux/PasswordField.java
- com.leonet.app.view.paneles_aux.PasswordField
- com.leonet.app.view.paneles_aux.PasswordField$1
- com.leonet.app.view.paneles_aux.PasswordField$2
- com.leonet.app.view.paneles_aux.PasswordField$3
-com/leonet/app/view/paneles_aux/PnInicioSesion.java
- com.leonet.app.view.paneles_aux.PnInicioSesion
-com/leonet/app/view/paneles_aux/RoundedPanel.java
- com.leonet.app.view.paneles_aux.RoundedPanel
-com/leonet/app/view/inicio/PnContexto.java
- com.leonet.app.view.inicio.PnContexto
-com/leonet/app/view/inicio/PnTop.java
- com.leonet.app.view.inicio.PnTop
+com/leonet/app/view/home/PnTop.java
+ com.leonet.app.view.home.PnTop
 com/leonet/app/view/login/PnLogin.java
  com.leonet.app.view.login.PnLogin
-com/leonet/app/view/inicio/PnProblema.java
- com.leonet.app.view.inicio.PnProblema
+com/leonet/app/controller/Controller.java
+ com.leonet.app.controller.Controller
+com/leonet/app/view/shared/PnCabecera2.java
+ com.leonet.app.view.shared.PnCabecera2
+com/leonet/app/view/shared/TextField.java
+ com.leonet.app.view.shared.TextField
+ com.leonet.app.view.shared.TextField$1
+ com.leonet.app.view.shared.TextField$2
+com/leonet/app/view/home/PnContexto.java
+ com.leonet.app.view.home.PnContexto
+com/leonet/app/view/home/PnCabecera.java
+ com.leonet.app.view.home.PnCabecera
+com/leonet/app/model/Model.java
+ com.leonet.app.model.Model
+com/leonet/app/view/shared/Patron.java
+ com.leonet.app.view.shared.Patron

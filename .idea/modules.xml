@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LeonetApp.iml" filepath="$PROJECT_DIR$/.idea/modules/LeonetApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LeonetApp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/LeonetApp.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LeonetApp.test.iml" filepath="$PROJECT_DIR$/.idea/modules/LeonetApp.test.iml" />
+    </modules>
+  </component>
+</project>
