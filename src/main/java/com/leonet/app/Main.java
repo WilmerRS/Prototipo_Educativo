@@ -12,12 +12,12 @@ package com.leonet.app;
 
 import com.leonet.app.controller.Controller;
 import com.leonet.app.model.Model;
-import com.leonet.app.view.login.ViewLogin;
+import com.leonet.app.view.View;
 
 public class Main {
 
     private static Model model;
-    private static ViewLogin view;
+    private static View view;
     private static Controller controller;
 
     /**
@@ -25,7 +25,7 @@ public class Main {
      */
     public Main() {
         model = new Model();
-        view = new ViewLogin();
+        view = new View();
         controller = new Controller(model, view);
     }
 

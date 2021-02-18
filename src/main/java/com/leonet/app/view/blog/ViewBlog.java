@@ -33,10 +33,10 @@ public class ViewBlog extends JFrame implements Patron {
     private PnRelleno pRellenoDer;
     private PnRellenoSur pRellenoSur;
     
-    private PnCabecera2 pCabecera;
+    private PnHeader pCabecera;
     private PnBlog pBlog;
     private PnInicioSesion pInicio;
-    private PnInfo pInformacion;
+    private PnFooter pInformacion;
     
     private String titulo = "Login";
     
@@ -77,7 +77,7 @@ public class ViewBlog extends JFrame implements Patron {
         pRellenoSur = new PnRellenoSur();
         pFondo.add(pRellenoSur, BorderLayout.SOUTH);
         
-        pCabecera = new PnCabecera2("BLOG");
+        pCabecera = new PnHeader("BLOG");
         pFondo.add(pCabecera, BorderLayout.NORTH);
         
         pBlog = new PnBlog();
@@ -91,7 +91,7 @@ public class ViewBlog extends JFrame implements Patron {
         pInicio = new PnInicioSesion();
         pAux.add(pInicio, BorderLayout.NORTH);
         
-        pInformacion = new PnInfo();
+        pInformacion = new PnFooter();
         pAux.add(pInformacion, BorderLayout.CENTER);
         
         this.add(pFondo);

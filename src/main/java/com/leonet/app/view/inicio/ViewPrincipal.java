@@ -155,8 +155,6 @@ public class ViewPrincipal extends  JFrame implements Patron {
          };
          pCabecera.getbtnInicio().addActionListener(clickInicio);
          
-         
-         
     }
             
     

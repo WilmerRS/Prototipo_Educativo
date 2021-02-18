@@ -11,8 +11,8 @@ package com.leonet.app.view.login;
 
 import com.leonet.app.view.home.PnBotones;
 import com.leonet.app.view.shared.Patron;
-import com.leonet.app.view.shared.PnCabecera2;
-import com.leonet.app.view.shared.PnInfo;
+import com.leonet.app.view.shared.PnHeader;
+import com.leonet.app.view.shared.PnFooter;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -30,9 +30,9 @@ public class ViewLogin extends JFrame implements Patron {
     private JPanel pAux;
     private JPanel pRelleno;
 
-    private PnCabecera2 pCabecera;
+    private PnHeader pCabecera;
     private PnBotones.ViewPrincipal ViewPrincipal;
-    private PnInfo pInformacion;
+    private PnFooter pInformacion;
     private PnLogin pLogin;
 
     private String titulo = "Login";
@@ -61,7 +61,7 @@ public class ViewLogin extends JFrame implements Patron {
         pFondo.setBackground(COLOR_PRINCIPAL);
         pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.3), (int) (ALTO * 0.85)));
 
-        pCabecera = new PnCabecera2("INICIO");
+        pCabecera = new PnHeader("INICIO");
         pFondo.add(pCabecera, BorderLayout.NORTH);
 
         pLogin = new PnLogin();
@@ -70,7 +70,7 @@ public class ViewLogin extends JFrame implements Patron {
         pAux = new JPanel();
         pAux.setLayout(new BorderLayout());
 
-        pInformacion = new PnInfo();
+        pInformacion = new PnFooter();
         pAux.add(pInformacion, BorderLayout.CENTER);
 
         pRelleno = new JPanel();
@@ -88,7 +88,7 @@ public class ViewLogin extends JFrame implements Patron {
 
 
 
-    public PnCabecera2 getpCabecera() {
+    public PnHeader getpCabecera() {
         return pCabecera;
     }
 

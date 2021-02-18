@@ -57,6 +57,8 @@ public class PnBlog extends RoundedPanel implements Patron {
 
     private void iniciarComponentes() {
         this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension(300,300));
+        this.setBackground(COLOR_AZUL_BOTON);
 
         pFondo = new JPanel();
         pFondo.setLayout(new BorderLayout());
@@ -75,7 +77,7 @@ public class PnBlog extends RoundedPanel implements Patron {
 
         pCentral = new JPanel();
         pCentral.setLayout(new BorderLayout());
-        pCentral.setBackground(COLOR_PRINCIPAL);
+        pCentral.setBackground(COLOR_AZUL_BOTON);
         pEspacio.add(pCentral, BorderLayout.CENTER);
         
         

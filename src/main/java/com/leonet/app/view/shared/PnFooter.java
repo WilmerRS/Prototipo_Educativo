@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author Luis Alfredo
  */
-public class PnInfo extends JPanel implements Patron{
+public class PnFooter extends JPanel implements Patron{
     
     private JPanel pFondo;
     private JPanel pContenido;
@@ -26,7 +26,7 @@ public class PnInfo extends JPanel implements Patron{
     private JLabel jTitulo1;
     private JLabel jTitulo2;
     
-    public PnInfo() {
+    public PnFooter() {
         super();
         iniciarComponentes();
     }

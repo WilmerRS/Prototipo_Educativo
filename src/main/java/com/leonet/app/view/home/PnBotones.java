@@ -30,7 +30,7 @@ public class PnBotones extends JPanel implements Patron {
     private Boton btnAnt;
     private Boton btnSig;
     
-    private PnInfo pInformacion;
+    private PnFooter pInformacion;
     
     public PnBotones() {
         super();
@@ -62,7 +62,7 @@ public class PnBotones extends JPanel implements Patron {
         btnSig = new Boton(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "SIGUIENTE", BOTON_SIGUIENTE);
         pBotones.add(btnSig);
         
-        pInformacion = new PnInfo();
+        pInformacion = new PnFooter();
         pCentral.add(pInformacion, BorderLayout.CENTER);
         
         this.add(pFondo);

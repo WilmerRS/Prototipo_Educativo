@@ -61,7 +61,7 @@ public class PnLogin extends JPanel implements Patron {
         pFondo = new JPanel();
         pFondo.setLayout(new BorderLayout());
         pFondo.setBackground(COLOR_PRINCIPAL);
-        //pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.0), (int) (ALTO * 0.35)));
+        pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.3), (int) (ALTO * 0.65)));
 
         pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDE);
         pRedondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));

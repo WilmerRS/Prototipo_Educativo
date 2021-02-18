@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 /**
  * @author Luis Alfredo
  */
-public class PnCabecera2 extends JPanel implements Patron {
+public class PnHeader extends JPanel implements Patron {
 
     private JPanel pFondo;
     private JPanel pFondoTodo;
@@ -39,7 +39,7 @@ public class PnCabecera2 extends JPanel implements Patron {
 
     private ImageIcon icono;
 
-    public PnCabecera2(String tipo) {
+    public PnHeader(String tipo) {
         super();
         this.TIPO = tipo;
         iniciarComponentes();
@@ -47,6 +47,7 @@ public class PnCabecera2 extends JPanel implements Patron {
 
     private void iniciarComponentes() {
         this.setLayout(new BorderLayout());
+        this.setPreferredSize(new Dimension( 0, (int)(ALTO*0.1)));
 
         pFondo = new JPanel();
         pFondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
