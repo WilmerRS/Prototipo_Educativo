@@ -9,7 +9,7 @@
  */
 package com.leonet.app.view.login;
 
-import com.leonet.app.view.paneles_aux.*;
+import com.leonet.app.view.shared.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -45,7 +45,7 @@ public class PnLogin extends JPanel implements Patron {
     private JLabel jMensajeError;
 
     private TextField cUsuario;
-    private PasswordField cContrasenia;
+    private TextField cContrasenia;
 
     private Boton btnCrearCuenta;
     private Boton btnIniciarSesion;
@@ -105,7 +105,7 @@ public class PnLogin extends JPanel implements Patron {
         jContrasenia.setForeground(COLOR_OSCURO_TITULOS);
         pContenido.add(jContrasenia);
 
-        cContrasenia = new PasswordField(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.07)), "");
+        cContrasenia = new TextField(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.07)), "", true);
         pContenido.add(cContrasenia);
 
         jOlvido = new JLabel("Olvidaste la Contrasenia?");
