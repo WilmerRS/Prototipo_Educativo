@@ -82,7 +82,8 @@ public class PnLogin extends JPanel implements Patron {
         //Icon icon = new ImageIcon(icono.getImage().getScaledInstance((int) (ANCHO * 0.15), (int) (ALTO * 0.24), Image.SCALE_DEFAULT));
         //jIcono.setIcon(icon);
         //jIcono.setHorizontalAlignment(SwingConstants.CENTER);
-        IconMod iconMod = new IconMod(resUrlBase + "Iconos/imagenlogin.png", (int) (ANCHO * 0.15), (int) (ALTO * 0.24));
+        //IconMod iconMod = new IconMod(resUrlBase + "Iconos/imagenlogin.png", (int) (ANCHO * 0.15), (int) (ALTO * 0.24));
+        IconMod iconMod = new IconMod(resUrlBase + "Iconos/imagenlogin.png", (int) (ANCHO * 0.15),(int) (ALTO * 0.24));
         pCentral.add(iconMod, BorderLayout.NORTH);
 
         pContenido = new JPanel();
