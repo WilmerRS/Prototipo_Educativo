@@ -30,11 +30,11 @@ public class PnHeader extends JPanel implements Patron {
     private JLabel jIcono;
 
 
-    private Boton btnInicio;
-    private Boton btnBlog;
-    private Boton btnPvp;
-    private Boton btnModoCreador;
-    private Boton btnAyuda;
+    private Button btnInicio;
+    private Button btnBlog;
+    private Button btnPvp;
+    private Button btnModoCreador;
+    private Button btnAyuda;
     private final String TIPO;
 
     private ImageIcon icono;
@@ -47,7 +47,7 @@ public class PnHeader extends JPanel implements Patron {
 
     private void iniciarComponentes() {
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension( 0, (int)(ALTO*0.1)));
+        this.setPreferredSize(new Dimension( 0, (int)(ALTO*0.095)));
 
         pFondo = new JPanel();
         pFondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
@@ -85,11 +85,11 @@ public class PnHeader extends JPanel implements Patron {
         pCentral.add(iconMod);
 
 
-        btnInicio = new Boton(new Dimension((int) (ANCHO * 0.09), (int) (ALTO * 0.05)), "App Educativa", BOTON_CABECERA, (TIPO.equals("INICIO")));
+        btnInicio = new Button(new Dimension((int) (ANCHO * 0.09), (int) (ALTO * 0.05)), "App Educativa", BOTON_CABECERA, (TIPO.equals("INICIO")));
         pCentral.add(btnInicio);
 
 
-        btnBlog = new Boton(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.05)), "Blog", BOTON_CABECERA, (TIPO.equals("BLOG")));
+        btnBlog = new Button(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.05)), "Blog", BOTON_CABECERA, (TIPO.equals("BLOG")));
         pCentral.add(btnBlog);
 
 
@@ -99,7 +99,7 @@ public class PnHeader extends JPanel implements Patron {
 //        btnModoCreador = new Boton(new Dimension((int) (ANCHO*0.08), (int) (ALTO*0.03)), "Modo Creador", BOTON_CABECERA);
 //        pCentral.add(btnModoCreador);
 //        
-        btnAyuda = new Boton(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.05)), "Ayuda", BOTON_CABECERA, (TIPO.equals("AYUDA")));
+        btnAyuda = new Button(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.05)), "Ayuda", BOTON_CABECERA, (TIPO.equals("AYUDA")));
         pCentral.add(btnAyuda);
 
         this.add(pFondo);
@@ -110,16 +110,16 @@ public class PnHeader extends JPanel implements Patron {
         btnInicio.FOREGROUND = c;
     }
 
-    public Boton getBtnInicio() {
+    public Button getBtnInicio() {
         return btnInicio;
     }
 
-    public Boton getBtnBlog() {
+    public Button getBtnBlog() {
         return btnBlog;
     }
 
 
-    public Boton getBtnAyuda() {
+    public Button getBtnAyuda() {
         return btnAyuda;
     }
 }

@@ -12,6 +12,7 @@ package com.leonet.app.view.home;
 import com.leonet.app.view.shared.IconMod;
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.RoundedPanel;
+import com.leonet.app.view.shared.ScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -41,7 +42,7 @@ public class PnProblema extends JPanel implements Patron {
     
     private ImageIcon icono;
     
-    private JScrollPane jScroll;
+    private ScrollPane jScroll;
     
     private JTextArea textProblema;
     private JTextArea textPro;
@@ -60,7 +61,7 @@ public class PnProblema extends JPanel implements Patron {
         pFondo.setBackground(COLOR_PRINCIPAL);
         //pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.0), (int) (ALTO * 0.35)));
 
-        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDE);
+        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
         pRedondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
         pFondo.add(pRedondo, BorderLayout.CENTER);
 
@@ -73,15 +74,9 @@ public class PnProblema extends JPanel implements Patron {
         pCentral = new JPanel(new BorderLayout());
         pCentral.setBackground(COLOR_PRINCIPAL);
         
-        jScroll = new JScrollPane(pCentral,
+        jScroll = new ScrollPane(pCentral,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        jScroll.setBorder(null);
-        jScroll.setOpaque(false);
-        jScroll.getViewport().setOpaque(false);
-        jScroll.getVerticalScrollBar().setPreferredSize(new Dimension(4, 4));
-        jScroll.getVerticalScrollBar().setBorder(null);
-        jScroll.setViewportView(pCentral);
         
         pEspacio.add(jScroll, BorderLayout.CENTER);
 
@@ -90,7 +85,7 @@ public class PnProblema extends JPanel implements Patron {
         pCentral.add(pTitulo, BorderLayout.NORTH);
 
         jTitulo = new JLabel("PROBLEMA");
-        jTitulo.setFont(CIUDATELLA_BOLD);
+        jTitulo.setFont(TITLE_FONT);
         jTitulo.setForeground(COLOR_OSCURO_TITULOS);
         pTitulo.add(jTitulo, BorderLayout.WEST);
         
@@ -119,7 +114,7 @@ public class PnProblema extends JPanel implements Patron {
         //textProblema.setPreferredSize( new Dimension(0, 12));
         textProblema.setBorder(null);
         textProblema.setOpaque(false);
-        textProblema.setFont(CIUDATELLA_LIGHT);
+        textProblema.setFont(CONTENT_FONT);
         textProblema.setForeground(COLOR_VERDE_OSCURO);
         
         pContenido.add(textProblema, BorderLayout.NORTH);
@@ -129,7 +124,7 @@ public class PnProblema extends JPanel implements Patron {
         textPro.setPreferredSize( new Dimension(0, 12));
         textPro.setBorder(null);
         textPro.setOpaque(false);
-        textPro.setFont(CIUDATELLA_LIGHT);
+        textPro.setFont(CONTENT_FONT);
         textPro.setForeground(COLOR_VERDE_OSCURO);
         
         pCentral.add(textPro, BorderLayout.SOUTH);

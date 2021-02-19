@@ -11,6 +11,7 @@ package com.leonet.app.view.home;
 
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.RoundedPanel;
+import com.leonet.app.view.shared.ScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -37,7 +38,7 @@ public class PnContexto extends RoundedPanel implements Patron {
     private JLabel jContexto;
     private JLabel jEjemplo;
     
-    private JScrollPane jScroll;
+    private ScrollPane jScroll;
     
     private JTextArea textContexto;
     private JTextArea textEjemplo;
@@ -75,7 +76,7 @@ public class PnContexto extends RoundedPanel implements Patron {
         
         
         jTituloContexto = new JLabel("CONTEXTO");
-        jTituloContexto.setFont(CIUDATELLA_BOLD);
+        jTituloContexto.setFont(TITLE_FONT);
         jTituloContexto.setForeground(COLOR_VERDE_OSCURO);
         pContexto.add(jTituloContexto, BorderLayout.NORTH);
         
@@ -83,7 +84,7 @@ public class PnContexto extends RoundedPanel implements Patron {
         textContexto.setPreferredSize( new Dimension(0, 12));
         textContexto.setBorder(null);
         textContexto.setOpaque(false);
-        textContexto.setFont(CIUDATELLA_LIGHT);
+        textContexto.setFont(CONTENT_FONT);
         textContexto.setForeground(COLOR_VERDE_OSCURO);
         textContexto.setCaretColor(COLOR_VERDE_OSCURO);
         textContexto.setSelectedTextColor(COLOR_PRINCIPAL);
@@ -91,7 +92,7 @@ public class PnContexto extends RoundedPanel implements Patron {
         pContexto.add(textContexto, BorderLayout.CENTER);
         
         jTituloEjemplo = new JLabel("Ejemplo");
-        jTituloEjemplo.setFont(CIUDATELLA_BOLD);
+        jTituloEjemplo.setFont(TITLE_FONT);
         jTituloEjemplo.setForeground(COLOR_VERDE_OSCURO);
         pEjemplo.add(jTituloEjemplo, BorderLayout.NORTH);
         
@@ -100,20 +101,14 @@ public class PnContexto extends RoundedPanel implements Patron {
         textEjemplo.setPreferredSize( new Dimension(0, 12));
         textEjemplo.setBorder(null);
         textEjemplo.setOpaque(false);
-        textEjemplo.setFont(CIUDATELLA_LIGHT);
+        textEjemplo.setFont(CONTENT_FONT);
         textEjemplo.setForeground(COLOR_VERDE_OSCURO);
         
         pEjemplo.add(textEjemplo, BorderLayout.CENTER);
         
-        jScroll = new JScrollPane(pContenido,
+        jScroll = new ScrollPane(pContenido,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        jScroll.setBorder(null);
-        jScroll.setOpaque(false);
-        jScroll.getViewport().setOpaque(false);
-        jScroll.getVerticalScrollBar().setPreferredSize(new Dimension(4, 4));
-        jScroll.getVerticalScrollBar().setBorder(null);
-        jScroll.setViewportView(pContenido);
         
         pRedondo.add(jScroll, BorderLayout.CENTER);
         

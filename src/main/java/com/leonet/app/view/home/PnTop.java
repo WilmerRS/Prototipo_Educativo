@@ -11,6 +11,7 @@ package com.leonet.app.view.home;
 
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.RoundedPanel;
+import com.leonet.app.view.shared.ScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -34,7 +35,7 @@ public class PnTop extends JPanel implements Patron {
     
     private JLabel jTitulo;
     
-    private JScrollPane jScroll;
+    private ScrollPane jScroll;
     
     public PnTop() {
 //        super(0, COLOR_VERDE, COLOR_VERDE);
@@ -50,7 +51,7 @@ public class PnTop extends JPanel implements Patron {
         pFondo.setBackground(COLOR_PRINCIPAL);
         //pFondo.setPreferredSize(new Dimension((int) (ANCHO*0.0), (int) (ALTO*0.35)));
         
-        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDE);
+        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
         pRedondo.setLayout(new BorderLayout(MARGEN_2,MARGEN_2));
         pFondo.add(pRedondo, BorderLayout.CENTER);
         
@@ -72,7 +73,7 @@ public class PnTop extends JPanel implements Patron {
         pCentral.add(pTitulo, BorderLayout.NORTH);
         
         jTitulo = new JLabel("TOP 10");
-        jTitulo.setFont(CIUDATELLA_BOLD);
+        jTitulo.setFont(TITLE_FONT);
         jTitulo.setForeground(COLOR_OSCURO_TITULOS);
         pTitulo.add(jTitulo, BorderLayout.NORTH);
         
@@ -85,19 +86,13 @@ public class PnTop extends JPanel implements Patron {
         pContenido = new JPanel();
         pContenido.setLayout(new BorderLayout());
         
-        jScroll = new JScrollPane(pContenido,
+        jScroll = new ScrollPane(pContenido,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        jScroll.setBorder(null);
-        jScroll.setOpaque(false);
-        jScroll.getViewport().setOpaque(false);
-        jScroll.getVerticalScrollBar().setPreferredSize(new Dimension(4, 4));
-        jScroll.getVerticalScrollBar().setBorder(null);
-        jScroll.setViewportView(pContenido);
         pCentral.add(jScroll, BorderLayout.CENTER);
         
         JLabel jEjemplo = new JLabel("<html><body>JLabel con <br> varias <br>linea :-) <br> varias <br> <br> varias <br> <br> varias <br><br> varias <br><br> varias <br></body></html>");
-        jEjemplo.setFont(CIUDATELLA_LIGHT);
+        jEjemplo.setFont(CONTENT_FONT);
         jEjemplo.setForeground(COLOR_VERDE_OSCURO);
         pContenido.add(jEjemplo, BorderLayout.CENTER);
         

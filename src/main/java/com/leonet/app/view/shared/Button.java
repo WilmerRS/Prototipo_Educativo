@@ -2,7 +2,7 @@
  * APP EDUCATIVA
  * Prototipo de una aplicacion para la enseñanza de programacion de a jovenes
  * y adultos, de manera didactica y sencilla.
- *
+ * <p>
  * WILMER RODRIGUEZ SANCHEZ
  * LUIS ALFREDO ACOSTA
  * 2021
@@ -21,12 +21,13 @@ import javax.swing.SwingConstants;
  *
  * @author WILMER
  */
-public class Boton extends JButton implements Patron {
+public class Button extends JButton implements Patron {
 
     public static final int BTN_DIAGONAL = 1;
     public static final int BTN_NO_DIAGONAL = 0;
-    
+
     private RoundedPanel pnFondo;
+    private RoundedPanel pnBackground;
     private Dimension dimension;
     private JLabel lbTexto;
 
@@ -39,24 +40,24 @@ public class Boton extends JButton implements Patron {
     public Color CLICK;
     public int TIPO;
     private boolean activo = false;
-    
-    public Boton(Dimension dimension, String texto, int tipo) {
+
+    public Button(Dimension dimension, String texto, int tipo) {
         super();
         this.dimension = dimension;
         this.texto = texto;
         this.TIPO = tipo;
         tipoBoton(tipo);
-        inicarComponentes();
+        initComponents();
     }
-    
-    public Boton(Dimension dimension, String texto, int tipo, boolean activo) {
+
+    public Button(Dimension dimension, String texto, int tipo, boolean activo) {
         super();
         this.dimension = dimension;
         this.texto = texto;
         this.TIPO = tipo;
-        this.activo = activo    ;
+        this.activo = activo;
         tipoBoton(tipo);
-        inicarComponentes();
+        initComponents();
     }
 
     private void tipoBoton(int i) {
@@ -65,43 +66,43 @@ public class Boton extends JButton implements Patron {
             FOREGROUND = COLOR_PRINCIPAL;
             HOVER = COLOR_NARANJA_BOTON;
             CLICK = COLOR_NARANJA_BOTON;
-            BORDER = COLOR_NARANJA_BOTON;
-        } 
-        if(i == BOTON_SIGUIENTE){
+            BORDER = COLOR_NARANJA_BOTON_BORDER;
+        }
+        if (i == BOTON_SIGUIENTE) {
             BACKGROUND = COLOR_AZUL_BOTON;
             FOREGROUND = COLOR_PRINCIPAL;
             HOVER = COLOR_AZUL_BOTON_HOVER;
             CLICK = COLOR_AZUL_BOTON_CLICK;
-            BORDER = COLOR_AZUL_BOTON;
+            BORDER = COLOR_AZUL_BOTON_BORDER;
         }
-        if(i == BOTON_CABECERA){
+        if (i == BOTON_CABECERA) {
             BACKGROUND = COLOR_PRINCIPAL;
-            FOREGROUND = COLOR_GRIS_CLARO;
-            HOVER = COLOR_GRIS_HOVER;
-            CLICK = COLOR_GRIS_CLICK;
+            FOREGROUND = COLOR_GRIS_MEDIO;
+            HOVER = COLOR_GRIS_CLARO;
+            CLICK = COLOR_GRIS;
             BORDER = COLOR_PRINCIPAL;
         }
-        
-        if(i == BOTON_CREAR_CUENTA){
-            BACKGROUND = COLOR_PRINCIPAL;
+
+        if (i == BOTON_CREAR_CUENTA) {
+            BACKGROUND = COLOR_GRIS;
             FOREGROUND = COLOR_VERDE_OSCURO;
             HOVER = COLOR_GRIS_HOVER;
             CLICK = COLOR_GRIS_CLICK;
-            BORDER = COLOR_PRINCIPAL;
+            BORDER = COLOR_GRIS_BORDER;
         }
-        if(i == BOTON_OLVIDO_CONTRASENIA){
+        if (i == BOTON_OLVIDO_CONTRASENIA) {
             BACKGROUND = COLOR_PRINCIPAL;
             FOREGROUND = COLOR_GRIS_CLARO;
             HOVER = COLOR_GRIS_HOVER;
             CLICK = COLOR_GRIS_CLICK;
             BORDER = COLOR_PRINCIPAL;
         }
-        if(activo){
+        if (activo) {
             FOREGROUND = COLOR_AZUL_CLARO;
         }
     }
 
-    private void inicarComponentes() {
+    private void initComponents() {
         this.setLayout(new java.awt.BorderLayout());
         this.setBorder(null);
         this.setOpaque(false);
@@ -110,62 +111,67 @@ public class Boton extends JButton implements Patron {
 
         lbTexto = new JLabel(texto);
         lbTexto.setForeground(FOREGROUND);
-        lbTexto.setFont(CIUDATELLA_BOLD);
+        lbTexto.setFont(BUTTON_TEXT_FONT);
         lbTexto.setHorizontalAlignment(SwingConstants.CENTER);
         lbTexto.setVerticalAlignment(SwingConstants.CENTER);
         lbTexto.setOpaque(false);
 
-        pnFondo = new RoundedPanel(RADIO, BACKGROUND, BORDER);
+        pnBackground = new RoundedPanel(RADIO, BORDER, BORDER);
+        pnBackground.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
+        Patron.marginBottom(pnBackground);
+
+        pnFondo = new RoundedPanel(RADIO, BACKGROUND, BACKGROUND);
         pnFondo.setLayout(new BorderLayout());
         pnFondo.setPreferredSize(dimension);
         pnFondo.setMinimumSize(dimension);
         pnFondo.add(lbTexto);
-        addEventos();
+        addEvents();
 
-        this.add(pnFondo);
+        pnBackground.add(pnFondo, BorderLayout.CENTER);
+        this.add(pnBackground);
     }
 
-    private void addEventos() {
-        // EVENTOS DEL MOUSE
+    private void addEvents() {
+        // MOUSE EVENTS
         this.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pnFondo.actualizarPanel(RADIO, HOVER, BORDER);
+                pnFondo.actualizarPanel(RADIO, HOVER, HOVER);
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnFondo.actualizarPanel(RADIO, BACKGROUND, BORDER);
+                pnFondo.actualizarPanel(RADIO, BACKGROUND, BACKGROUND);
             }
 
             @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnFondo.actualizarPanel(RADIO, CLICK, BORDER);
+                pnFondo.actualizarPanel(RADIO, CLICK, CLICK);
             }
 
             @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                pnFondo.actualizarPanel(RADIO, HOVER, BORDER);
+                pnFondo.actualizarPanel(RADIO, HOVER, HOVER);
             }
         });
 
-        // EVENTOS DEL FOCO
+        // FOCUS EVENTS
         this.addFocusListener(new java.awt.event.FocusListener() {
             @Override
             public void focusGained(FocusEvent fe) {
-                pnFondo.actualizarPanel(RADIO, HOVER, BORDER);
+                pnFondo.actualizarPanel(RADIO, HOVER, HOVER);
             }
 
             @Override
             public void focusLost(FocusEvent fe) {
-                pnFondo.actualizarPanel(RADIO, BACKGROUND, BORDER);
+                pnFondo.actualizarPanel(RADIO, BACKGROUND, BACKGROUND);
             }
         });
-        
+
     }
-    
-    public void actualizarColor(Color c){
-        FOREGROUND=c;
+
+    public void updateColor(Color color) {
+        FOREGROUND = color;
     }
 
     public JLabel getLbTexto() {
@@ -179,5 +185,5 @@ public class Boton extends JButton implements Patron {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
-    
+
 }

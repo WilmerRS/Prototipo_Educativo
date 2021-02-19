@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class IconMod extends JPanel implements Patron{
+public class IconMod extends JPanel implements Patron {
     private String pathImage;
     private int width;
     private int height;
@@ -24,24 +24,21 @@ public class IconMod extends JPanel implements Patron{
     private void initComponent() {
         this.setPreferredSize(new Dimension(width, height));
         this.setBackground(COLOR_PRINCIPAL);
-        this.setOpaque(true);
     }
 
-    public void paint(Graphics g) {
-        super.paint(g);
-        update(g);
-    }
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
-    public void update(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         try {
             image = ImageIO.read(new File(pathImage));
         } catch (IOException ex) {
+            System.out.println("Error al cargar la imagen. CLASS: IconMod 37");
         }
         int w = this.getWidth();
         int h = this.getHeight();
 
-        g2d.drawImage(image, (w-width) / 2, (h-height) / 2, width, height, null);
+        g2d.drawImage(image, (w - width) / 2, (h - height) / 2, width, height, null);
     }
 }

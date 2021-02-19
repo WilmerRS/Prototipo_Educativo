@@ -28,10 +28,10 @@ public class PnFooter extends JPanel implements Patron{
     
     public PnFooter() {
         super();
-        iniciarComponentes();
+        initComponents();
     }
     
-    private void iniciarComponentes(){
+    private void initComponents(){
         
         this.setLayout(new BorderLayout());
         
@@ -41,18 +41,18 @@ public class PnFooter extends JPanel implements Patron{
         
         jTitulo = new JLabel("Acerca de * Aplicaciones");
         jTitulo.setAlignmentX(CENTER_ALIGNMENT);
-        jTitulo.setFont(CIUDATELLA_BOLD);
-        jTitulo.setForeground(COLOR_GRIS_BORDE);
+        jTitulo.setFont(TITLE_FONT);
+        jTitulo.setForeground(COLOR_GRIS_BORDER);
         
         jTitulo1 = new JLabel("Terminos * Condiciones");
         jTitulo1.setAlignmentX(CENTER_ALIGNMENT);
-        jTitulo1.setFont(CIUDATELLA_BOLD);
-        jTitulo1.setForeground(COLOR_GRIS_BORDE);
+        jTitulo1.setFont(TITLE_FONT);
+        jTitulo1.setForeground(COLOR_GRIS_BORDER);
         
         jTitulo2 = new JLabel("¡Unete y Apoya!");
         jTitulo2.setAlignmentX(CENTER_ALIGNMENT);
-        jTitulo2.setFont(CIUDATELLA_BOLD);
-        jTitulo2.setForeground(COLOR_GRIS_BORDE);
+        jTitulo2.setFont(TITLE_FONT);
+        jTitulo2.setForeground(COLOR_GRIS_BORDER);
         
         pContenido = new JPanel();
         pContenido.setLayout(new BoxLayout(pContenido, BoxLayout.Y_AXIS));

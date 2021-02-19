@@ -36,8 +36,8 @@ public class PnInicioSesion extends  JPanel implements Patron{
     
     private JScrollPane jScroll;
     
-    private Boton btnIniciarSesion;
-    private Boton btnCrearCuenta;
+    private Button btnIniciarSesion;
+    private Button btnCrearCuenta;
     
     public PnInicioSesion() {
 //        super(0, COLOR_VERDE, COLOR_VERDE);
@@ -51,7 +51,7 @@ public class PnInicioSesion extends  JPanel implements Patron{
         pFondo.setLayout(new BorderLayout());
         pFondo.setBackground(COLOR_PRINCIPAL);
         
-        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDE);
+        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
         pRedondo.setLayout(new BorderLayout(MARGEN_2,MARGEN_2));
         pFondo.add(pRedondo, BorderLayout.CENTER);
         
@@ -67,8 +67,8 @@ public class PnInicioSesion extends  JPanel implements Patron{
         pMargenes.add(pCentral, BorderLayout.CENTER);
         
         jTitulo = new JLabel("titulo largo");
-        jTitulo.setFont(CIUDATELLA_BOLD);
-        jTitulo.setForeground(COLOR_GRIS_BORDE);
+        jTitulo.setFont(TITLE_FONT);
+        jTitulo.setForeground(COLOR_GRIS_BORDER);
         jTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         pCentral.add(jTitulo, BorderLayout.NORTH);
         
@@ -79,10 +79,10 @@ public class PnInicioSesion extends  JPanel implements Patron{
         pBotones.setLayout(new GridLayout(2, 0));
         pCentral.add(pBotones, BorderLayout.SOUTH);
         
-        btnIniciarSesion = new Boton(new Dimension((int) (ANCHO*0.09), (int) (ALTO*0.05)), "Iniciar Sesion", BOTON_SIGUIENTE);
+        btnIniciarSesion = new Button(new Dimension((int) (ANCHO*0.09), (int) (ALTO*0.05)), "Iniciar Sesion", BOTON_SIGUIENTE);
         pBotones.add(btnIniciarSesion);
         
-        btnCrearCuenta = new Boton(new Dimension((int) (ANCHO*0.08), (int) (ALTO*0.05)), "Crear Cuenta", BOTON_CREAR_CUENTA);
+        btnCrearCuenta = new Button(new Dimension((int) (ANCHO*0.08), (int) (ALTO*0.05)), "Crear Cuenta", BOTON_CREAR_CUENTA);
         pBotones.add(btnCrearCuenta);
         
         

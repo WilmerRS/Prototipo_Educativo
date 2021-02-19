@@ -2,7 +2,7 @@
  * APP EDUCATIVA
  * Prototipo de una aplicacion para la enseñanza de programacion de a jovenes
  * y adultos, de manera didactica y sencilla.
- *
+ * <p>
  * WILMER RODRIGUEZ SANCHEZ
  * LUIS ALFREDO ACOSTA
  * 2021
@@ -13,6 +13,8 @@ package com.leonet.app;
 import com.leonet.app.controller.Controller;
 import com.leonet.app.model.Model;
 import com.leonet.app.view.View;
+
+import javax.swing.*;
 
 public class Main {
 
@@ -27,6 +29,8 @@ public class Main {
         model = new Model();
         view = new View();
         controller = new Controller(model, view);
+
+        view.setVisible(true);
     }
 
     /**
@@ -48,11 +52,11 @@ public class Main {
         /*
          * Ejecuta la ventana principal de la aplicacion
          */
-        java.awt.EventQueue.invokeLater(() -> {
+        SwingUtilities.invokeLater(() -> {
+            System.setProperty("awt.useSystemAAFontSettings", "lcd"); // use font antialiasing
+            System.setProperty("swing.aatext", "true");
             new Main();
-            view.setVisible(true);
         });
-//        new Prototipo_Educate_Main();
     }
 
 }

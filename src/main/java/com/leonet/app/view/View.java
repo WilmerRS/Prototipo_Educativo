@@ -4,6 +4,7 @@ import com.leonet.app.view.blog.PnBlog;
 import com.leonet.app.view.login.PnLogin;
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.PnHeader;
+import com.leonet.app.view.shared.ScrollPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,11 +12,10 @@ import java.awt.*;
 
 public class View extends JFrame implements Patron {
 
-    private String title = "App Educativa - ";
+    private String title = "App Educativa - Iniciar sesión";
 
     private JPanel pnBackgroug;
-    private JPanel pnCenterTabs;
-    private JScrollPane spMain;
+    private ScrollPane spMain;
 
     private PnHeader pnHeader;
     private PnLogin pnLogin;
@@ -40,40 +40,30 @@ public class View extends JFrame implements Patron {
         pnBackgroug = new JPanel(new BorderLayout());
         pnBackgroug.setBackground(COLOR_PRINCIPAL);
 
-        pnCenterTabs = new JPanel(new FlowLayout());
-        pnCenterTabs.setBackground(COLOR_PRINCIPAL);
+        addHeaderComponent();
+        addCenterTabs();
 
-        addHeader();
-        centerTabs();
-
-        pnBackgroug.add(pnCenterTabs, BorderLayout.CENTER);
+        // pnBackgroug.add(pnCenterTabs, BorderLayout.CENTER);
         this.add(pnBackgroug);
         pack();
     }
 
-    private void addHeader() {
+    private void addHeaderComponent() {
         pnHeader = new PnHeader("INICIO");
         pnBackgroug.add(pnHeader, BorderLayout.NORTH);
     }
 
-    private void centerTabs() {
+    private void addCenterTabs() {
         pnLogin = new PnLogin();
         pnBlog = new PnBlog();
-        // panel blog
-        // panel home
+        // panel home con su getter
+        // panel ayuda con su getter
 
-        spMain = new JScrollPane(pnBlog,
-                JScrollPane.VERTICAL_SCROLLBAR_NEVER,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        spMain.setBorder(null);
-        spMain.setOpaque(false);
-        spMain.getViewport().setOpaque(false);
-        spMain.setViewportView(pnBlog);
+        spMain = new ScrollPane(pnLogin,
+                ScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        spMain.getHorizontalScrollBar().setPreferredSize(new Dimension(4, 4));
-        spMain.getHorizontalScrollBar().setBorder(null);
-
-        pnCenterTabs.add(spMain);
+        pnBackgroug.add(spMain, BorderLayout.CENTER);
     }
 
     public PnLogin getPnLogin() {

@@ -9,7 +9,7 @@
  */
 package com.leonet.app.view.blog;
 
-import com.leonet.app.view.shared.Boton;
+import com.leonet.app.view.shared.Button;
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.RoundedPanel;
 import com.leonet.app.view.shared.TextField;
@@ -45,19 +45,18 @@ public class PnBlog extends RoundedPanel implements Patron {
     private TextField cUsuario;
     private TextField cContrasenia;
 
-    private Boton btnCrearCuenta;
-    private Boton btnIniciarSesion;
+    private Button btnCrearCuenta;
+    private Button btnIniciarSesion;
     
     private JScrollPane jScroll;
 
     public PnBlog() {
         super(0, COLOR_PRINCIPAL, COLOR_PRINCIPAL);
-        iniciarComponentes();
+        initComponents();
     }
 
-    private void iniciarComponentes() {
+    private void initComponents() {
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(300,300));
         this.setBackground(COLOR_AZUL_BOTON);
 
         pFondo = new JPanel();
@@ -65,7 +64,7 @@ public class PnBlog extends RoundedPanel implements Patron {
         pFondo.setBackground(COLOR_PRINCIPAL);
         //pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.0), (int) (ALTO * 0.35)));
 
-        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDE);
+        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
         pRedondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
         pFondo.add(pRedondo, BorderLayout.CENTER);
 
@@ -79,8 +78,8 @@ public class PnBlog extends RoundedPanel implements Patron {
         pCentral.setLayout(new BorderLayout());
         pCentral.setBackground(COLOR_AZUL_BOTON);
         pEspacio.add(pCentral, BorderLayout.CENTER);
-        
-        
+
+        this.add(pFondo);
     }
 
     private void hacerMargenes() {

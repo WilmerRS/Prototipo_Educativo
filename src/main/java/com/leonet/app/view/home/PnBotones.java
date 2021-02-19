@@ -10,6 +10,7 @@
 package com.leonet.app.view.home;
 
 import com.leonet.app.view.shared.*;
+import com.leonet.app.view.shared.Button;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,8 +28,8 @@ public class PnBotones extends JPanel implements Patron {
     private JPanel pBotones;
     private JPanel pInfo;
     
-    private Boton btnAnt;
-    private Boton btnSig;
+    private Button btnAnt;
+    private Button btnSig;
     
     private PnFooter pInformacion;
     
@@ -56,10 +57,10 @@ public class PnBotones extends JPanel implements Patron {
         pBotones.setBackground(COLOR_PRINCIPAL);
         pCentral.add(pBotones, BorderLayout.NORTH);
         
-        btnAnt = new Boton(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "ANTERIOR", BOTON_ANTERIOR);
+        btnAnt = new Button(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "ANTERIOR", BOTON_ANTERIOR);
         pBotones.add(btnAnt);
         
-        btnSig = new Boton(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "SIGUIENTE", BOTON_SIGUIENTE);
+        btnSig = new Button(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "SIGUIENTE", BOTON_SIGUIENTE);
         pBotones.add(btnSig);
         
         pInformacion = new PnFooter();

@@ -9,7 +9,7 @@
  */
 package com.leonet.app.view.home;
 
-import com.leonet.app.view.shared.Boton;
+import com.leonet.app.view.shared.Button;
 import com.leonet.app.view.shared.IconMod;
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.PnRelleno;
@@ -46,11 +46,11 @@ public class PnCabecera extends JPanel implements Patron {
     private JLabel c;
     private JLabel g;
 
-    private Boton btnInicio;
-    private Boton btnBlog;
-    private Boton btnPvp;
-    private Boton btnModoCreador;
-    private Boton btnAyuda;
+    private Button btnInicio;
+    private Button btnBlog;
+    private Button btnPvp;
+    private Button btnModoCreador;
+    private Button btnAyuda;
 
     private ImageIcon icono;
     private ImageIcon icono2;
@@ -100,19 +100,19 @@ public class PnCabecera extends JPanel implements Patron {
         IconMod iconMod = new IconMod(resUrlBase + "Iconos//logo1.png", (int) (ANCHO * 0.04), (int) (ALTO * 0.07));
         pCentral.add(iconMod);
 
-        btnInicio = new Boton(new Dimension((int) (ANCHO * 0.08), (int) (ALTO * 0.03)), "App Educativa", BOTON_CABECERA);
+        btnInicio = new Button(new Dimension((int) (ANCHO * 0.08), (int) (ALTO * 0.03)), "App Educativa", BOTON_CABECERA);
         pCentral.add(btnInicio);
 
-        btnBlog = new Boton(new Dimension((int) (ANCHO * 0.03), (int) (ALTO * 0.03)), "blog", BOTON_CABECERA);
+        btnBlog = new Button(new Dimension((int) (ANCHO * 0.03), (int) (ALTO * 0.03)), "blog", BOTON_CABECERA);
         pCentral.add(btnBlog);
 
-        btnPvp = new Boton(new Dimension((int) (ANCHO * 0.03), (int) (ALTO * 0.03)), "PvP", BOTON_CABECERA);
+        btnPvp = new Button(new Dimension((int) (ANCHO * 0.03), (int) (ALTO * 0.03)), "PvP", BOTON_CABECERA);
         pCentral.add(btnPvp);
 
-        btnModoCreador = new Boton(new Dimension((int) (ANCHO * 0.08), (int) (ALTO * 0.03)), "Modo Creador", BOTON_CABECERA);
+        btnModoCreador = new Button(new Dimension((int) (ANCHO * 0.08), (int) (ALTO * 0.03)), "Modo Creador", BOTON_CABECERA);
         pCentral.add(btnModoCreador);
 
-        btnAyuda = new Boton(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.03)), "ayuda", BOTON_CABECERA);
+        btnAyuda = new Button(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.03)), "ayuda", BOTON_CABECERA);
         pCentral.add(btnAyuda);
 
         pNick = new JPanel();
@@ -131,12 +131,12 @@ public class PnCabecera extends JPanel implements Patron {
         pNick.add(iconMod);
 
         jMoneda = new JLabel("50");
-        jMoneda.setFont(CIUDATELLA_BOLD);
+        jMoneda.setFont(TITLE_FONT);
         jMoneda.setForeground(COLOR_GRIS_CLARO);
         pNick.add(jMoneda);
 
         c = new JLabel(".c");
-        c.setFont(CIUDATELLA_BOLD);
+        c.setFont(TITLE_FONT);
         c.setForeground(COLOR_GRIS_CLARO);
         pNick.add(c);
 
@@ -150,12 +150,12 @@ public class PnCabecera extends JPanel implements Patron {
         pNick.add(iconMod);
 
         jDiamante = new JLabel("5.0");
-        jDiamante.setFont(CIUDATELLA_BOLD);
+        jDiamante.setFont(TITLE_FONT);
         jDiamante.setForeground(COLOR_GRIS_CLARO);
         pNick.add(jDiamante);
 
         g = new JLabel(".g");
-        g.setFont(CIUDATELLA_BOLD);
+        g.setFont(TITLE_FONT);
         g.setForeground(COLOR_GRIS_CLARO);
         pNick.add(g);
 
@@ -172,23 +172,23 @@ public class PnCabecera extends JPanel implements Patron {
 
     }
 
-    public Boton getbtnInicio() {
+    public Button getbtnInicio() {
         return btnInicio;
     }
 
-    public Boton getbtnBlog() {
+    public Button getbtnBlog() {
         return btnBlog;
     }
 
-    public Boton getbtnPvp() {
+    public Button getbtnPvp() {
         return btnPvp;
     }
 
-    public Boton getbtnModoCreador() {
+    public Button getbtnModoCreador() {
         return btnModoCreador;
     }
 
-    public Boton getbtnAyuda() {
+    public Button getbtnAyuda() {
         return btnAyuda;
     }
 }
