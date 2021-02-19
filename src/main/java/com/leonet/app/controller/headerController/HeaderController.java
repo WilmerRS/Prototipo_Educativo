@@ -10,13 +10,21 @@ public class HeaderController extends ControllerRepositoty {
         super(model, view);
     }
 
-    protected void addListener() {
+    protected void addListeners() {
+        // Button blog
         view.getPnHeader().getBtnBlog().addActionListener(ae -> {
-            view.updateTab(view.getPnBlog());
+            view.updateTab(view.getPnBlog(), "Blog");
         });
 
+        // Button LeonetApp
         view.getPnHeader().getBtnInicio().addActionListener(ae -> {
-            view.updateTab(view.getPnLogin());
+            boolean isLogin = view.isLogin();
+            if(isLogin){
+                view.updateTab(view.getPnLeonetApp(), "Inicio");
+            }else{
+                view.getPnLogin().resetMessageCredentials();
+                view.updateTab(view.getPnLogin(), "Iniciar sesión");
+            }
         });
     }
 }

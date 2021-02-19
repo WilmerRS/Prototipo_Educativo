@@ -1,6 +1,7 @@
 package com.leonet.app.view;
 
 import com.leonet.app.view.blog.PnBlog;
+import com.leonet.app.view.home.PnLeonetApp;
 import com.leonet.app.view.login.PnLogin;
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.PnHeader;
@@ -12,7 +13,7 @@ import java.awt.*;
 
 public class View extends JFrame implements Patron {
 
-    private String title = "App Educativa - Iniciar sesión";
+    private final String title = "LeonetAPP - ";
 
     private JPanel pnBackgroug;
     private ScrollPane spMain;
@@ -20,6 +21,7 @@ public class View extends JFrame implements Patron {
     private PnHeader pnHeader;
     private PnLogin pnLogin;
     private PnBlog pnBlog;
+    private PnLeonetApp pnLeonetApp;
 
 
     /**
@@ -31,10 +33,10 @@ public class View extends JFrame implements Patron {
     }
 
     private void initComponent() {
-        this.setTitle(title);
+        this.setTitle(title + "Iniciar sesión");
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.setIconImage(new ImageIcon(resUrlBase + "Iconos/logo1.png").getImage());
-        this.setPreferredSize(new Dimension((int) (ANCHO * 0.8), (int) (ALTO * 0.8)));
+        this.setPreferredSize(new Dimension((int) (ANCHO * 0.87), (int) (ALTO * 0.87)));
         this.setMinimumSize(new Dimension((int) (ANCHO * 0.5), (int) (ALTO * 0.5)));
 
         pnBackgroug = new JPanel(new BorderLayout());
@@ -43,7 +45,6 @@ public class View extends JFrame implements Patron {
         addHeaderComponent();
         addCenterTabs();
 
-        // pnBackgroug.add(pnCenterTabs, BorderLayout.CENTER);
         this.add(pnBackgroug);
         pack();
     }
@@ -56,7 +57,7 @@ public class View extends JFrame implements Patron {
     private void addCenterTabs() {
         pnLogin = new PnLogin();
         pnBlog = new PnBlog();
-        // panel home con su getter
+        pnLeonetApp = new PnLeonetApp();
         // panel ayuda con su getter
 
         spMain = new ScrollPane(pnLogin,
@@ -70,6 +71,10 @@ public class View extends JFrame implements Patron {
         return pnLogin;
     }
 
+    public PnLeonetApp getPnLeonetApp() {
+        return pnLeonetApp;
+    }
+
     public PnBlog getPnBlog() {
         return pnBlog;
     }
@@ -78,7 +83,20 @@ public class View extends JFrame implements Patron {
         return pnHeader;
     }
 
-    public void updateTab(Component cmpnt){
+    public void updateTab(Component cmpnt, String title) {
         spMain.setViewportView(cmpnt);
+        this.setTitle(this.title + title);
+    }
+
+    public void userHasLogged(){
+        pnHeader.setLogin(true);
+    }
+
+    public void userHasLoggedOut(){
+        pnHeader.setLogin(false);
+    }
+
+    public boolean isLogin() {
+        return pnHeader.isLogin();
     }
 }

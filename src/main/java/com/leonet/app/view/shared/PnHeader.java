@@ -39,13 +39,15 @@ public class PnHeader extends JPanel implements Patron {
 
     private ImageIcon icono;
 
+    private boolean isLogin = false;
+
     public PnHeader(String tipo) {
         super();
         this.TIPO = tipo;
-        iniciarComponentes();
+        initComponents();
     }
 
-    private void iniciarComponentes() {
+    private void initComponents() {
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension( 0, (int)(ALTO*0.095)));
 
@@ -118,6 +120,13 @@ public class PnHeader extends JPanel implements Patron {
         return btnBlog;
     }
 
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean login) {
+        isLogin = login;
+    }
 
     public Button getBtnAyuda() {
         return btnAyuda;

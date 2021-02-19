@@ -20,12 +20,12 @@ public class ControllerRepositoty {
         this.model = model;
         this.view = view;
         initControllers();
-        addListener();
+        addListeners();
     }
 
     protected void initControllers() {
     }
 
-    protected void addListener() {
+    protected void addListeners() {
     }
 }

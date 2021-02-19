@@ -116,7 +116,7 @@ public class PnLogin extends JPanel implements Patron {
         JPanel tempUserContainer = new JPanel(new BorderLayout(MARGEN_2, MARGEN_2));
         tempUserContainer.setBackground(COLOR_PRINCIPAL);
 
-        jUsuario = new JLabel("Usuario");
+        jUsuario = new JLabel("Usuario o correo electrónico:");
         jUsuario.setFont(SUBTITlE3_FONT);
         jUsuario.setForeground(COLOR_OSCURO_TITULOS);
 
@@ -130,7 +130,7 @@ public class PnLogin extends JPanel implements Patron {
         JPanel tempPassContainer = new JPanel(new BorderLayout(MARGEN_2, MARGEN_2));
         tempPassContainer.setBackground(COLOR_PRINCIPAL);
 
-        jContrasenia = new JLabel("Contraseña");
+        jContrasenia = new JLabel("Contraseña:");
         jContrasenia.setFont(SUBTITlE3_FONT);
         jContrasenia.setForeground(COLOR_OSCURO_TITULOS);
 
@@ -172,10 +172,16 @@ public class PnLogin extends JPanel implements Patron {
         this.add(pnFooter, BorderLayout.CENTER);
     }
 
-    public void colorRojo() {
+    public void invalidCredentials() {
+        jMensajeError.setText("CREDENCIALES INVÁLIDAS");
         jMensajeError.setForeground(COLOR_ROJO);
+        System.out.println("* Contraseña errada. * CLASS: PnLogin 178");
     }
 
+    public void resetMessageCredentials() {
+        jMensajeError.setText("INGRESA TUS CREDENCIALES");
+        jMensajeError.setForeground(COLOR_VERDE_MEDIO);
+    }
 
     public Button getBtnInicarSesion() {
         return btnIniciarSesion;

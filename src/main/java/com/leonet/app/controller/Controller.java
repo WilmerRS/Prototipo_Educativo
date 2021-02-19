@@ -11,6 +11,7 @@
 package com.leonet.app.controller;
 
 import com.leonet.app.controller.headerController.HeaderController;
+import com.leonet.app.controller.userController.UserController;
 import com.leonet.app.model.Model;
 import com.leonet.app.view.View;
 
@@ -23,6 +24,7 @@ public class Controller extends ControllerRepositoty {
 
     // Controllers
     private HeaderController headerController;
+    private UserController userController;
 
     /**
      * Permite construir el controlador principal, que une el la interfaz con el modelo
@@ -36,6 +38,6 @@ public class Controller extends ControllerRepositoty {
 
     protected void initControllers() {
         headerController = new HeaderController(model, view);
-        //loginController = new ViewLoginController(model, viewLogin);
+        userController = new UserController(model, view);
     }
 }
