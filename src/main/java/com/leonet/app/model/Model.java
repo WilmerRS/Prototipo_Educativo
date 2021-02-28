@@ -11,7 +11,8 @@
 package com.leonet.app.model;
 
 import com.leonet.app.model.databaseConection.ConectionBD;
-import com.leonet.app.model.user.Usuario;
+import com.leonet.app.model.problems.Problems;
+import com.leonet.app.model.user.User;
 
 /**
  * Clase que tiene toda la parte logica del programa
@@ -20,69 +21,24 @@ import com.leonet.app.model.user.Usuario;
  */
 public class Model extends ConectionBD {
 
-    private Usuario usuario;
-//    private Statement stmt;
-//    private ResultSet rs;
-//    private ResultSet rt;
+    private User user;
+    private Problems problems;
 
     public Model() {
         super();
-        iniciarTablas();
+        initModels();
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public User getUser() {
+        return user;
     }
 
-    private void iniciarTablas() {
-        usuario = new Usuario(this.getBasicDataSource());
+    public Problems getProblems() {
+        return problems;
     }
 
-//    /**
-//     * *
-//     * Coneccion a base de datos
-//     */
-//    private void conectar() {
-//        String pass = "1110";
-//        String user = "postgres";
-//        String driver = "org.postgresql.Driver";
-//        String url = "jdbc:postgresql://localhost:5432/AppEducativa";
-//
-//        Connection cn = null;
-//        try {
-//            Class.forName(driver);
-//            cn = DriverManager.getConnection(url, user, pass);
-//            System.out.println("Coneccion exitosa");
-//        } catch (ClassNotFoundException ex) {
-//            JOptionPane.showMessageDialog(null, "Salio mal " + ex);
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "No se realizó la conexion" + ex);
-//        }
-//
-//        try {
-//            stmt = cn.createStatement();
-//            rs = stmt.executeQuery("select* from Usuario order by nickname ASC");
-//
-//            while (rs.next()) {
-//                System.out.print("\tnick: " + rs.getObject(1));
-//                System.out.print("\tpass: " + rs.getObject(4));
-//                System.out.println("");
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Error" + e);
-//        }
-//    }
-//
-//
-//    public Statement getStmt() {
-//        return stmt;
-//    }
-//
-//    public ResultSet getRs() {
-//        return rs;
-//    }
-//
-//    public ResultSet getRt() {
-//        return rt;
-//    }
+    private void initModels() {
+        user = new User(this.getBasicDataSource());
+        problems = new Problems(this.getBasicDataSource());
+    }
 }

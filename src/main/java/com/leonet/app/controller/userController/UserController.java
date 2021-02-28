@@ -11,10 +11,15 @@
 package com.leonet.app.controller.userController;
 
 import com.leonet.app.controller.ControllerRepositoty;
+import com.leonet.app.controller.problemsController.AdvaceButtonsController;
+import com.leonet.app.controller.problemsController.ProblemsController;
 import com.leonet.app.model.Model;
 import com.leonet.app.view.View;
 
 public class UserController extends ControllerRepositoty {
+
+    private ProblemsController problemsController;
+    private AdvaceButtonsController advaceButtonsController;
 
     /**
      * Permite construir el controlador de Login, que une el la interfaz con el modelo
@@ -22,8 +27,9 @@ public class UserController extends ControllerRepositoty {
      * @param model Modelo, parte lógica del programa
      * @param view  Interfaz, parte visual del programa
      */
-    public UserController(Model model, View view) {
+    public UserController(Model model, View view, ProblemsController problemsController) {
         super(model, view);
+        this.problemsController = problemsController;
     }
 
     protected void addListeners() {
@@ -33,20 +39,26 @@ public class UserController extends ControllerRepositoty {
 
     private void registerListener() {
         view.getPnLogin().getBtnCrearCuenta().addActionListener(ae -> {
-            System.out.println("Crear cuenta CLASS UserController 67");
+            //System.out.println("Crear cuenta CLASS UserController 67");
         });
     }
 
     private void loginListener() {
         view.getPnLogin().getBtnInicarSesion().addActionListener(ae -> {
-            boolean isLogin = model.getUsuario().iniciarSesion(view.getPnLogin().getUsuario(), view.getPnLogin().getContrasenia());
-            System.out.println("Login = " + isLogin + "CLASS UserController 52");
+            boolean isLogin = model.getUser().login(view.getPnLogin().getUsuario(), view.getPnLogin().getContrasenia());
+            //System.out.println("Login = " + isLogin + "CLASS UserController 52");
             if (/*isLogin*/ true) {
                 view.updateTab(view.getPnLeonetApp(), "Inicio");
                 view.userHasLogged();
+                loadProblems();
             } else {
                 view.getPnLogin().invalidCredentials();
             }
         });
+    }
+
+    private void loadProblems() {
+        problemsController = new ProblemsController(model, view);
+        advaceButtonsController = new AdvaceButtonsController(model, view);
     }
 }

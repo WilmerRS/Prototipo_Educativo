@@ -24,8 +24,6 @@ public class PnHeader extends JPanel implements Patron {
     private JPanel pCentral;
     private JPanel pMargen;
 
-    private PnRelleno pRellenoDer;
-    private PnRelleno pRellenoIzq;
 
     private JLabel jIcono;
 
@@ -42,7 +40,6 @@ public class PnHeader extends JPanel implements Patron {
     private boolean isLogin = false;
 
     public PnHeader(String tipo) {
-        super();
         this.TIPO = tipo;
         initComponents();
     }

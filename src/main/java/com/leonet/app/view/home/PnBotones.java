@@ -13,8 +13,6 @@ import com.leonet.app.view.shared.*;
 import com.leonet.app.view.shared.Button;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -26,27 +24,26 @@ public class PnBotones extends JPanel implements Patron {
     private JPanel pFondo;
     private JPanel pCentral;
     private JPanel pBotones;
-    private JPanel pInfo;
     
     private Button btnAnt;
     private Button btnSig;
     
-    private PnFooter pInformacion;
+    private PnFooter pnFooter;
     
     public PnBotones() {
-        super();
-        iniciarComponentes();
+        initComponents();
     }
     
-    private void iniciarComponentes(){
-        
+    private void initComponents(){
         this.setLayout(new BorderLayout());
+        this.setBackground(COLOR_PRINCIPAL);
         
         pFondo = new JPanel();
-        pFondo.setLayout(new BorderLayout());
+        pFondo.setLayout(new BorderLayout(MARGEN, MARGEN));
         pFondo.setBackground(COLOR_PRINCIPAL);
-        
-        hacerMargenes();
+
+        UIComponents.marginVertical(pFondo);
+        UIComponents.marginLeft(pFondo);
         
         pCentral = new JPanel();
         pCentral.setLayout(new BorderLayout());
@@ -57,30 +54,23 @@ public class PnBotones extends JPanel implements Patron {
         pBotones.setBackground(COLOR_PRINCIPAL);
         pCentral.add(pBotones, BorderLayout.NORTH);
         
-        btnAnt = new Button(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "ANTERIOR", BOTON_ANTERIOR);
+        btnAnt = new Button(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.05)), "ANTERIOR", ORANGE_BUTTON);
         pBotones.add(btnAnt);
         
-        btnSig = new Button(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.06)), "SIGUIENTE", BOTON_SIGUIENTE);
+        btnSig = new Button(new Dimension((int) (ANCHO*0.07), (int) (ALTO*0.05)), "SIGUIENTE", BLUE_BUTTON);
         pBotones.add(btnSig);
-        
-        pInformacion = new PnFooter();
-        pCentral.add(pInformacion, BorderLayout.CENTER);
-        
+
+        pnFooter = new PnFooter();
+        pCentral.add(pnFooter, BorderLayout.CENTER);
+
         this.add(pFondo);
-        
-    }
-    
-     private void hacerMargenes(){
-        int f=10;
-        JPanel nor1 = new JPanel();
-        nor1.setPreferredSize(new Dimension(0, f));
-        nor1.setBackground(COLOR_PRINCIPAL);
-        pFondo.add(nor1, BorderLayout.NORTH);
-        
-        JPanel izq1 = new JPanel();
-        izq1.setPreferredSize(new Dimension(f, 0));
-        izq1.setBackground(COLOR_PRINCIPAL);
-        pFondo.add(izq1, BorderLayout.WEST);
     }
 
+    public Button getBtnAnt() {
+        return btnAnt;
+    }
+
+    public Button getBtnSig() {
+        return btnSig;
+    }
 }

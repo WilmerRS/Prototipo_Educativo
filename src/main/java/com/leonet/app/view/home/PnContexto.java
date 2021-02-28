@@ -2,142 +2,149 @@
  * APP EDUCATIVA
  * Prototipo de una aplicacion para la enseñanza de programacion de a jovenes
  * y adultos, de manera didactica y sencilla.
- *
+ * <p>
  * WILMER RODRIGUEZ SANCHEZ
  * LUIS ALFREDO ACOSTA
  * 2021
  */
 package com.leonet.app.view.home;
 
-import com.leonet.app.view.shared.Patron;
-import com.leonet.app.view.shared.RoundedPanel;
+import com.leonet.app.view.shared.*;
 import com.leonet.app.view.shared.ScrollPane;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import java.awt.*;
+import javax.swing.*;
 
 /**
- *
  * @author Luis Alfredo
  */
-public class PnContexto extends RoundedPanel implements Patron {
-    
+public class PnContexto extends JPanel implements Patron {
+
     private JPanel pFondo;
     private JPanel pContenido;
     private JPanel pContexto;
     private JPanel pEjemplo;
-    
+
     private RoundedPanel pRedondo;
-    
+    private RoundedPanel pnBackground;
+
     private JLabel jTituloContexto;
     private JLabel jTituloEjemplo;
-    private JLabel jContexto;
-    private JLabel jEjemplo;
-    
-    private ScrollPane jScroll;
-    
-    private JTextArea textContexto;
-    private JTextArea textEjemplo;
-    
+
+    private ScrollPane spContexto;
+    private ScrollPane spEjemplo;
+
+    private TextPane textContexto;
+    private TextPane textEjemplo;
+
+    private int MAX_LINES_CONTEXTO = 200;
+    private int MAX_LINES_EJEMPLO = 200;
+    private JPanel pnContainerEjemplo;
+
     public PnContexto() {
-        super(0, COLOR_VERDE, COLOR_VERDE);
-        iniciarComponentes();
+        initComponents();
     }
 
-    private void iniciarComponentes() {
+    private void initComponents() {
         this.setLayout(new BorderLayout());
-        
+
         pFondo = new JPanel();
-        pFondo.setLayout(new BorderLayout());
+        pFondo.setLayout(new BorderLayout(MARGEN_2 * 3, MARGEN_2 * 3));
         pFondo.setBackground(COLOR_PRINCIPAL);
-        //pFondo.setPreferredSize(new Dimension((int) (ANCHO*0.50), (int) (ALTO*0.0)));
-        
+
+        pnBackground = new RoundedPanel(RADIO, COLOR_VERDE_MEDIO, COLOR_VERDE_MEDIO);
+        pnBackground.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
+        UIComponents.marginBottom(pnBackground);
+
         pRedondo = new RoundedPanel(RADIO, COLOR_VERDE, COLOR_VERDE);
-        pRedondo.setLayout(new BorderLayout(MARGEN,MARGEN));
-        hacerMargenes();
-        
-        pFondo.add(pRedondo, BorderLayout.CENTER);
-        
+        pRedondo.setLayout(new BorderLayout(MARGEN_2 * 3, MARGEN_2 * 3));
+
+        UIComponents.marginAll(pRedondo);
+        UIComponents.marginTop(pFondo);
+
+        pnBackground.add(pRedondo, BorderLayout.CENTER);
+
+        pFondo.add(pnBackground, BorderLayout.CENTER);
+
         pContenido = new JPanel();
-        pContenido.setLayout(new BorderLayout(MARGEN,MARGEN));
+        pContenido.setLayout(new BoxLayout(pContenido, BoxLayout.Y_AXIS));
         pContenido.setBackground(COLOR_VERDE);
-        
-        pContexto = new JPanel(new BorderLayout(MARGEN,MARGEN));
-        pContenido.add(pContexto, BorderLayout.NORTH);
+
+        pContexto = new JPanel(new BorderLayout(MARGEN, MARGEN));
         pContexto.setBackground(COLOR_VERDE);
-        
-        pEjemplo = new JPanel(new BorderLayout(MARGEN,MARGEN));
-        pEjemplo.setBackground(COLOR_VERDE);
-        pContenido.add(pEjemplo, BorderLayout.SOUTH);
-        
-        
+        pContexto.setPreferredSize(new Dimension(0,MAX_LINES_CONTEXTO));
+
         jTituloContexto = new JLabel("CONTEXTO");
         jTituloContexto.setFont(TITLE_FONT);
         jTituloContexto.setForeground(COLOR_VERDE_OSCURO);
         pContexto.add(jTituloContexto, BorderLayout.NORTH);
-        
-        textContexto = new JTextArea("kuiffffffffffffffffffffffffffffffffffffs", 3, 1);
-        textContexto.setPreferredSize( new Dimension(0, 12));
-        textContexto.setBorder(null);
-        textContexto.setOpaque(false);
-        textContexto.setFont(CONTENT_FONT);
-        textContexto.setForeground(COLOR_VERDE_OSCURO);
-        textContexto.setCaretColor(COLOR_VERDE_OSCURO);
-        textContexto.setSelectedTextColor(COLOR_PRINCIPAL);
-        textContexto.setSelectionColor(COLOR_VERDE_OSCURO);
-        pContexto.add(textContexto, BorderLayout.CENTER);
-        
-        jTituloEjemplo = new JLabel("Ejemplo");
+
+        /**textContexto = new TextPane("", COLOR_VERDE);
+
+        spContexto = new ScrollPane(textContexto,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        pContexto.add(spContexto, BorderLayout.CENTER);**/
+
+        pContenido.add(pContexto);
+
+        pnContainerEjemplo = new JPanel(new BorderLayout(MARGEN, MARGEN));
+        pnContainerEjemplo.setPreferredSize(new Dimension(0,MAX_LINES_EJEMPLO));
+        pnContainerEjemplo.setBackground(COLOR_VERDE);
+        UIComponents.marginTop(pnContainerEjemplo);
+
+        pEjemplo = new JPanel(new BorderLayout(MARGEN, MARGEN));
+        pEjemplo.setBackground(COLOR_VERDE);
+
+        jTituloEjemplo = new JLabel("EJEMPLO:");
         jTituloEjemplo.setFont(TITLE_FONT);
         jTituloEjemplo.setForeground(COLOR_VERDE_OSCURO);
         pEjemplo.add(jTituloEjemplo, BorderLayout.NORTH);
-        
-        
-        textEjemplo = new JTextArea("kuiffffffffffffffffffffffffffffffffffffs", 3, 1);
-        textEjemplo.setPreferredSize( new Dimension(0, 12));
-        textEjemplo.setBorder(null);
-        textEjemplo.setOpaque(false);
-        textEjemplo.setFont(CONTENT_FONT);
-        textEjemplo.setForeground(COLOR_VERDE_OSCURO);
-        
-        pEjemplo.add(textEjemplo, BorderLayout.CENTER);
-        
-        jScroll = new ScrollPane(pContenido,
+
+        /**textEjemplo = new TextPane("", COLOR_VERDE);
+
+        spEjemplo = new ScrollPane(textEjemplo,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
-        pRedondo.add(jScroll, BorderLayout.CENTER);
-        
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        pEjemplo.add(spEjemplo, BorderLayout.CENTER);*/
+        pnContainerEjemplo.add(pEjemplo);
+
+        pContenido.add(pnContainerEjemplo);
+
+        pRedondo.add(pContenido, BorderLayout.CENTER);
+
+        //this.setPreferredSize(new Dimension(0,500));
         this.add(pFondo);
-        
     }
-    
-    private void hacerMargenes(){
-        int i = 0;
-        JPanel izq = new JPanel();
-        izq.setPreferredSize(new Dimension(i, i));
-        pRedondo.add(izq, BorderLayout.WEST);
 
-        JPanel der = new JPanel();
-        der.setPreferredSize(new Dimension(i, i));
-        pRedondo.add(der, BorderLayout.EAST);
+    public void updateContext(String text, int linesCount){
+        pContexto.setPreferredSize(new Dimension(0,linesCount));
+        textContexto = new TextPane(text, COLOR_VERDE);
 
-        JPanel nor = new JPanel();
-        nor.setPreferredSize(new Dimension(i, i));
-        pRedondo.add(nor, BorderLayout.NORTH);
+        spContexto = new ScrollPane(textContexto,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        pContexto.add(spContexto, BorderLayout.CENTER);
+    }
 
-        JPanel sur = new JPanel();
-        sur.setPreferredSize(new Dimension(i, i));
-        pRedondo.add(sur, BorderLayout.SOUTH);
-        
-        int f=10;
-        JPanel nor1 = new JPanel();
-        nor1.setPreferredSize(new Dimension(0, f));
-        nor1.setBackground(COLOR_PRINCIPAL);
-        pFondo.add(nor1, BorderLayout.NORTH);
+    public void updateExample(String text, int linesCount){
+        pnContainerEjemplo.setPreferredSize(new Dimension(0,linesCount));
+        textEjemplo = new TextPane(text, COLOR_VERDE);
+
+        spEjemplo = new ScrollPane(textEjemplo,
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        pEjemplo.add(spEjemplo, BorderLayout.CENTER);
+    }
+
+
+    public void setMAX_LINES_CONTEXTO(int MAX_LINES_CONTEXTO) {
+        this.MAX_LINES_CONTEXTO = MAX_LINES_CONTEXTO;
+    }
+
+    public void setMAX_LINES_EJEMPLO(int MAX_LINES_EJEMPLO) {
+        this.MAX_LINES_EJEMPLO = MAX_LINES_EJEMPLO;
     }
 }

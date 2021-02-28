@@ -11,11 +11,6 @@ public class HeaderController extends ControllerRepositoty {
     }
 
     protected void addListeners() {
-        // Button blog
-        view.getPnHeader().getBtnBlog().addActionListener(ae -> {
-            view.updateTab(view.getPnBlog(), "Blog");
-        });
-
         // Button LeonetApp
         view.getPnHeader().getBtnInicio().addActionListener(ae -> {
             boolean isLogin = view.isLogin();
@@ -25,6 +20,16 @@ public class HeaderController extends ControllerRepositoty {
                 view.getPnLogin().resetMessageCredentials();
                 view.updateTab(view.getPnLogin(), "Iniciar sesión");
             }
+        });
+
+        // Button blog
+        view.getPnHeader().getBtnBlog().addActionListener(ae -> {
+            view.updateTab(view.getPnBlog(), "Blog");
+        });
+
+        // Button Ayuda
+        view.getPnHeader().getBtnAyuda().addActionListener(ae -> {
+            view.updateTab(view.getPnHelp(), "Ayuda");
         });
     }
 }

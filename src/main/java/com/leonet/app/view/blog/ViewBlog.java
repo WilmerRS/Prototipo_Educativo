@@ -28,10 +28,7 @@ public class ViewBlog extends JFrame implements Patron {
     private JPanel pFondo;
     private JPanel pAux;
     private JPanel pRelleno;
-    
-    private PnRelleno pRellenoIzq;
-    private PnRelleno pRellenoDer;
-    private PnRellenoSur pRellenoSur;
+
     
     private PnHeader pCabecera;
     private PnBlog pBlog;
@@ -56,19 +53,18 @@ public class ViewBlog extends JFrame implements Patron {
     }
 
     private void paneles() {
-        
         this.setLayout(new BorderLayout());
-        
-        pFondo= new JPanel();
-        pFondo.setLayout(new BorderLayout(MARGEN, MARGEN*5));
+
+        pFondo = new JPanel();
+        pFondo.setLayout(new BorderLayout(MARGEN, MARGEN * 5));
         pFondo.setBackground(COLOR_PRINCIPAL);
-        pFondo.setPreferredSize(new Dimension ((int) (ANCHO * 0.8), (int) (ALTO * 0.8)));
-        
+        pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.8), (int) (ALTO * 0.8)));
+
         pRelleno = new JPanel();
         pRelleno.setLayout(new BorderLayout());
         pFondo.add(pRelleno, BorderLayout.CENTER);
-        
-        pRellenoIzq = new PnRelleno();
+
+        /**pRellenoIzq = new PnRelleno();
         pFondo.add(pRellenoIzq, BorderLayout.WEST);
         
         pRellenoDer = new PnRelleno();
@@ -78,7 +74,7 @@ public class ViewBlog extends JFrame implements Patron {
         pFondo.add(pRellenoSur, BorderLayout.SOUTH);
         
         pCabecera = new PnHeader("BLOG");
-        pFondo.add(pCabecera, BorderLayout.NORTH);
+        pFondo.add(pCabecera, BorderLayout.NORTH);*/
         
         pBlog = new PnBlog();
         pRelleno.add(pBlog, BorderLayout.CENTER);

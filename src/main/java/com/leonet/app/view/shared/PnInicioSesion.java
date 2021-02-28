@@ -79,10 +79,10 @@ public class PnInicioSesion extends  JPanel implements Patron{
         pBotones.setLayout(new GridLayout(2, 0));
         pCentral.add(pBotones, BorderLayout.SOUTH);
         
-        btnIniciarSesion = new Button(new Dimension((int) (ANCHO*0.09), (int) (ALTO*0.05)), "Iniciar Sesion", BOTON_SIGUIENTE);
+        btnIniciarSesion = new Button(new Dimension((int) (ANCHO*0.09), (int) (ALTO*0.05)), "Iniciar Sesion", BLUE_BUTTON);
         pBotones.add(btnIniciarSesion);
         
-        btnCrearCuenta = new Button(new Dimension((int) (ANCHO*0.08), (int) (ALTO*0.05)), "Crear Cuenta", BOTON_CREAR_CUENTA);
+        btnCrearCuenta = new Button(new Dimension((int) (ANCHO*0.08), (int) (ALTO*0.05)), "Crear Cuenta", GRAY_BUTTON);
         pBotones.add(btnCrearCuenta);
         
         

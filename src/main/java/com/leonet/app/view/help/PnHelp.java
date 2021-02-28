@@ -11,11 +11,14 @@ package com.leonet.app.view.help;
 
 import com.leonet.app.view.shared.Patron;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
  * @author Luis Alfredo
  */
 public class PnHelp extends JPanel implements Patron {
+
+    public PnHelp(){
+    }
 }

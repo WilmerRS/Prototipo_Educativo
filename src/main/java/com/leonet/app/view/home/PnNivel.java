@@ -9,13 +9,13 @@
  */
 package com.leonet.app.view.home;
 
+import com.leonet.app.view.shared.LoadingBar;
 import com.leonet.app.view.shared.Patron;
 import com.leonet.app.view.shared.RoundedPanel;
+import com.leonet.app.view.shared.UIComponents;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 /**
  *
@@ -25,114 +25,105 @@ public class PnNivel extends JPanel implements Patron {
     
     private JPanel pFondo;
     private JPanel pCentral;
+    private JPanel pCentralComp;
     private JPanel pTitulo;
     private JPanel pLinea;
     private JPanel pMargenes;
     
     private RoundedPanel pRedondo;
+
+    private LoadingBar loadingBar;
     
-    private JLabel jTitulo;
+    private JLabel lbTitle;
+    private JLabel lbGain;
+    private JLabel lbChallenge;
+    private JLabel lbFreeMode;
     
     public PnNivel() {
-        iniciarComponentes();
+        initComponents();
     }
     
-    private void iniciarComponentes(){
-        
+    private void initComponents() {
+
         this.setLayout(new BorderLayout());
-        
+        //this.setPreferredSize(new Dimension(0,(int)(ALTO*0.15)));
+        //this.setMinimumSize(new Dimension(0,(int)(ALTO*0.15)));
+
         pFondo = new JPanel();
-        pFondo.setLayout(new BorderLayout(MARGEN_2,MARGEN_2));
+        pFondo.setLayout(new BorderLayout(MARGEN_2 * 3, MARGEN_2 * 3));
         pFondo.setBackground(COLOR_PRINCIPAL);
-        //pFondo.setPreferredSize(new Dimension((int) (ANCHO*0.0), (int) (ALTO*0.35)));
-        
-        pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
-        pRedondo.setLayout(new BorderLayout(MARGEN_2,MARGEN_2));
+
+        pRedondo = new RoundedPanel(RADIO, COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
+        pRedondo.setLayout(new BorderLayout(MARGEN_2 * 3, MARGEN_2 * 3));
         pFondo.add(pRedondo, BorderLayout.CENTER);
-        
-        
+
         pMargenes = new JPanel();
-        pMargenes.setLayout(new BorderLayout(MARGEN, MARGEN));
+        pMargenes.setLayout(new BorderLayout());
         pMargenes.setBackground(COLOR_PRINCIPAL);
         pRedondo.add(pMargenes, BorderLayout.CENTER);
-        
-        hacerMargenes();
-        
+
+        UIComponents.marginAll(pRedondo);
+        UIComponents.marginTop(pFondo);
+        UIComponents.marginLeft(pFondo);
+
         pCentral = new JPanel();
-        pCentral.setLayout(new BorderLayout(MARGEN_2,MARGEN_2));
+        pCentral.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
         pCentral.setBackground(COLOR_PRINCIPAL);
         pMargenes.add(pCentral, BorderLayout.CENTER);
-        
+
         pTitulo = new JPanel();
-        pTitulo.setLayout(new BorderLayout(MARGEN_2,MARGEN_2));
+        pTitulo.setLayout(new BorderLayout());
         pTitulo.setBackground(COLOR_PRINCIPAL);
         pCentral.add(pTitulo, BorderLayout.NORTH);
-        
-        jTitulo = new JLabel("NIVEL 1: TEMA 1");
-        jTitulo.setFont(TITLE_FONT);
-        jTitulo.setForeground(COLOR_OSCURO_TITULOS);
-        pTitulo.add(jTitulo, BorderLayout.NORTH);
-        
-        pLinea = new JPanel();
-        pLinea.setPreferredSize(new Dimension((int) (ANCHO*0.00), (int) (ALTO*0.002)));
-        pLinea.setBackground(COLOR_GRIS_CLARO);
-        
+
+        lbTitle = new JLabel("NIVEL 1: TEMA 1");
+        lbTitle.setFont(TITLE_FONT);
+        lbTitle.setForeground(COLOR_GRIS_OSCURO);
+        pTitulo.add(lbTitle, BorderLayout.NORTH);
+
+        pLinea = UIComponents.lineSeparator(1, COLOR_GRIS_BORDER);
         pTitulo.add(pLinea, BorderLayout.SOUTH);
-        
-        JLabel jEjemplo = new JLabel("<html><body>JLabel con <br> varias <br>linea :-) </body></html>");
-        jEjemplo.setFont(CONTENT_FONT);
-        jEjemplo.setForeground(COLOR_VERDE_OSCURO);
-        pCentral.add(jEjemplo, BorderLayout.CENTER);
+
+        pCentralComp = new JPanel(new BorderLayout(MARGEN_2, MARGEN_2));
+        pCentralComp.setBackground(COLOR_PRINCIPAL);
+
+        /**loadingBar = new LoadingBar(new Dimension(0, (int) (ALTO * 0.022)),
+                "Porcentaje de avance:", 25, 50);*/
+
+
+        JPanel pnGrid = new JPanel(new GridLayout(0, 1));
+        pnGrid.setBackground(COLOR_PRINCIPAL);
+
+        lbGain = new JLabel("Logros >");
+        lbGain.setFont(SUBTITlE3_FONT);
+        lbGain.setForeground(COLOR_GRIS_OSCURO);
+
+        lbChallenge = new JLabel("Retos >");
+        lbChallenge.setFont(SUBTITlE3_FONT);
+        lbChallenge.setForeground(COLOR_GRIS_OSCURO);
+
+        lbFreeMode = new JLabel("Cambiar al MODO LIBRE");
+        lbFreeMode.setFont(SUBTITlE2_FONT);
+        lbFreeMode.setForeground(COLOR_AZUL_BOTON);
+
+        pnGrid.add(lbGain);
+        pnGrid.add(lbChallenge);
+        pnGrid.add(lbFreeMode);
+
+        pCentralComp.add(pnGrid, BorderLayout.CENTER);
+
+        pCentral.add(pCentralComp, BorderLayout.CENTER);
         
         this.add(pFondo);
-        
     }
-    
-     private void hacerMargenes(){
-        int i = 0;
-        JPanel izq = new JPanel();
-        izq.setPreferredSize(new Dimension(i, 0));
-        pRedondo.add(izq, BorderLayout.WEST);
 
-        JPanel der = new JPanel();
-        der.setPreferredSize(new Dimension(i, 0));
-        pRedondo.add(der, BorderLayout.EAST);
-
-        JPanel nor = new JPanel();
-        nor.setPreferredSize(new Dimension(0, i));
-        pRedondo.add(nor, BorderLayout.NORTH);
-
-        JPanel sur = new JPanel();
-        sur.setPreferredSize(new Dimension(0, i));
-        pRedondo.add(sur, BorderLayout.SOUTH);
-        
-        int f=10;
-        JPanel nor1 = new JPanel();
-        nor1.setPreferredSize(new Dimension(0, f));
-        nor1.setBackground(COLOR_PRINCIPAL);
-        pFondo.add(nor1, BorderLayout.NORTH);
-        
-        JPanel izq1 = new JPanel();
-        izq1.setPreferredSize(new Dimension(f, 0));
-        izq1.setBackground(COLOR_PRINCIPAL);
-        pFondo.add(izq1, BorderLayout.WEST);
-        
-        JPanel izq2 = new JPanel();
-        izq2.setPreferredSize(new Dimension(i, 0));
-        pMargenes.add(izq2, BorderLayout.WEST);
-
-        JPanel der2 = new JPanel();
-        der2.setPreferredSize(new Dimension(i, 0));
-        pMargenes.add(der2, BorderLayout.EAST);
-
-        JPanel nor2 = new JPanel();
-        nor2.setPreferredSize(new Dimension(0, i));
-        pMargenes.add(nor2, BorderLayout.NORTH);
-
-        JPanel sur2 = new JPanel();
-        sur2.setPreferredSize(new Dimension(0, i));
-        pMargenes.add(sur2, BorderLayout.SOUTH);
-        
+    public LoadingBar getLoadingBar() {
+        return loadingBar;
     }
-    
+
+    public  void updateLoadingBar(int startingPoint, int finalPoint){
+        loadingBar = new LoadingBar(new Dimension(0, (int) (ALTO * 0.022)),
+                "Porcentaje de avance:", startingPoint, finalPoint);
+        pCentralComp.add(loadingBar, BorderLayout.NORTH);
+    }
 }

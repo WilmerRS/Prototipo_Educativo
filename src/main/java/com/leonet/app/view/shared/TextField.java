@@ -2,7 +2,7 @@
  * APP EDUCATIVA
  * Prototipo de una aplicacion para la enseñanza de programacion de a jovenes
  * y adultos, de manera didactica y sencilla.
- *
+ * <p>
  * WILMER RODRIGUEZ SANCHEZ
  * LUIS ALFREDO ACOSTA
  * 2021
@@ -10,10 +10,10 @@
 package com.leonet.app.view.shared;
 
 import java.awt.BorderLayout;
-import java.awt.Color; 
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension; 
-import java.awt.Graphics; 
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.event.FocusEvent;
 import javax.swing.*;
@@ -33,25 +33,43 @@ public class TextField extends JPanel implements Patron {
     private JTextField txtField;
     private ScrollPane spTxtField;
     private Dimension dimension;
-    private String texto;
+    private String text;
     private boolean passwordTipe;
     private String aux;
 
-    public TextField(Dimension dimension, String texto) {
+    private Color colorBorder;
+    private Color colorBorderHover;
+
+    public TextField(Dimension dimension, String text) {
         super();
         this.dimension = dimension;
-        this.texto = texto;
-        this.aux = texto;
+        this.text = text;
+        this.aux = text;
         this.passwordTipe = false;
+        this.colorBorder = COLOR_GRIS_BORDER;
+        this.colorBorderHover = COLOR_AZUL_CLARO;
         initComponents();
     }
 
-    public TextField(Dimension dimension, String texto, boolean passwordTipe) {
+    public TextField(Dimension dimension, String text, boolean passwordTipe) {
         super();
         this.dimension = dimension;
-        this.texto = texto;
-        this.aux = texto;
+        this.text = text;
+        this.aux = text;
         this.passwordTipe = passwordTipe;
+        this.colorBorder = COLOR_GRIS_BORDER;
+        this.colorBorderHover = COLOR_AZUL_CLARO;
+        initComponents();
+    }
+
+    public TextField(Dimension dimension, String text, Color colorBorder) {
+        super();
+        this.dimension = dimension;
+        this.text = text;
+        this.aux = text;
+        this.BORDER = colorBorder;
+        this.colorBorder = colorBorder;
+        this.colorBorderHover = colorBorder;
         initComponents();
     }
 
@@ -62,7 +80,7 @@ public class TextField extends JPanel implements Patron {
         this.setPreferredSize(dimension);
         this.setFocusable(false);
 
-        txtField = (!passwordTipe) ? new JTextField(texto) : new JPasswordField(texto);
+        txtField = (!passwordTipe) ? new JTextField(text) : new JPasswordField(text);
         txtField.setFont(CONTENT_FONT);
         txtField.setBorder(new Border() {
             @Override
@@ -80,21 +98,21 @@ public class TextField extends JPanel implements Patron {
             }
         });
         txtField.setOpaque(false);
-        txtField.setCaretColor(COLOR_AZUL_CLARO);
-        txtField.setForeground(COLOR_OSCURO_TITULOS);
+        txtField.setCaretColor(colorBorderHover);
+        txtField.setForeground(COLOR_GRIS_OSCURO);
         txtField.setSelectedTextColor(COLOR_PRINCIPAL);
-        txtField.setSelectionColor(COLOR_AZUL_CLARO);
+        txtField.setSelectionColor(colorBorderHover);
         txtField.setMargin(new java.awt.Insets(7, 7, 7, 7));
 
         spTxtField = new ScrollPane(txtField,
                 ScrollPane.VERTICAL_SCROLLBAR_NEVER,
                 ScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        pnFondo = new RoundedPanel(RADIO, BACKGROUND, BORDER);
+        pnFondo = new RoundedPanel(RADIO_BUTTON, BACKGROUND, BORDER);
         pnFondo.setLayout(new BorderLayout(4, 3));
         pnFondo.setBackground(COLOR_PRINCIPAL);
         pnFondo.add(spTxtField, BorderLayout.CENTER);
-        Patron.marginAll(pnFondo);
+        UIComponents.marginAll(pnFondo);
 
         addEvents();
 
@@ -105,14 +123,14 @@ public class TextField extends JPanel implements Patron {
         txtField.addFocusListener(new java.awt.event.FocusListener() {
             @Override
             public void focusGained(FocusEvent fe) {
-                BORDER = COLOR_AZUL_CLARO;
-                pnFondo.actualizarPanel(RADIO, COLOR_PRINCIPAL, BORDER);
+                BORDER = colorBorderHover;
+                pnFondo.actualizarPanel(RADIO_BUTTON, COLOR_PRINCIPAL, BORDER);
             }
 
             @Override
             public void focusLost(FocusEvent fe) {
-                BORDER = COLOR_GRIS_BORDER;
-                pnFondo.actualizarPanel(RADIO, BACKGROUND, BORDER);
+                BORDER = colorBorder;
+                pnFondo.actualizarPanel(RADIO_BUTTON, BACKGROUND, BORDER);
             }
         });
     }
@@ -123,6 +141,10 @@ public class TextField extends JPanel implements Patron {
 
     public String getText() {
         return txtField.getText();
+    }
+
+    public JTextField getTxtField() {
+        return txtField;
     }
 
 }

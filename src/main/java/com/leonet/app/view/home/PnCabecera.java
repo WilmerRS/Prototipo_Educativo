@@ -12,7 +12,6 @@ package com.leonet.app.view.home;
 import com.leonet.app.view.shared.Button;
 import com.leonet.app.view.shared.IconMod;
 import com.leonet.app.view.shared.Patron;
-import com.leonet.app.view.shared.PnRelleno;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -33,9 +32,6 @@ public class PnCabecera extends JPanel implements Patron {
     private JPanel pMargen;
     private JPanel pNick;
 
-    private PnRelleno pRellenoDer;
-    private PnRelleno pRellenoIzq;
-    private PnRelleno pRelleno;
 
     private JLabel jIcono;
     private JLabel jNick;
@@ -69,11 +65,11 @@ public class PnCabecera extends JPanel implements Patron {
         pFondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
         pFondo.setBackground(COLOR_PRINCIPAL);
 
-        pRellenoIzq = new PnRelleno();
+        /**pRellenoIzq = new PnRelleno();
         pFondo.add(pRellenoIzq, BorderLayout.WEST);
 
         pRellenoDer = new PnRelleno();
-        pFondo.add(pRellenoDer, BorderLayout.EAST);
+        pFondo.add(pRellenoDer, BorderLayout.EAST);*/
 
         pMargen = new JPanel();
         pMargen.setBackground(COLOR_GRIS);
@@ -90,12 +86,6 @@ public class PnCabecera extends JPanel implements Patron {
         pCentral.setLayout(new FlowLayout(FlowLayout.LEFT, MARGEN, MARGEN));
         pCentral.setBackground(COLOR_PRINCIPAL);
         pFondoTodo.add(pCentral, BorderLayout.CENTER);
-
-        //icono = new ImageIcon(resUrlBase + "Iconos/logo1.png");
-        //jIcono = new JLabel();
-        //jIcono.setPreferredSize(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.07)));
-        //Icon icon = new ImageIcon(icono.getImage().getScaledInstance((int) (ANCHO * 0.04), (int) (ALTO * 0.07), Image.SCALE_DEFAULT));
-        //jIcono.setIcon(icon);
 
         IconMod iconMod = new IconMod(resUrlBase + "Iconos//logo1.png", (int) (ANCHO * 0.04), (int) (ALTO * 0.07));
         pCentral.add(iconMod);
@@ -120,13 +110,6 @@ public class PnCabecera extends JPanel implements Patron {
         pNick.setBackground(COLOR_PRINCIPAL);
         pFondoTodo.add(pNick, BorderLayout.EAST);
 
-        //icono2 = new ImageIcon(resUrlBase + "Iconos/moneda.png");
-        //imagenMoneda = new JLabel();
-        //imagenMoneda.setPreferredSize(new Dimension((int) (ANCHO * 0.02), (int) (ALTO * 0.04)));
-        //Icon ico = new ImageIcon(icono2.getImage().getScaledInstance((int) (ANCHO * 0.02), (int) (ALTO * 0.04), Image.SCALE_DEFAULT));
-
-        //imagenMoneda.setIcon(ico);
-
         iconMod = new IconMod(resUrlBase + "Iconos/moneda.png", (int) (ANCHO * 0.02), (int) (ALTO * 0.034));
         pNick.add(iconMod);
 
@@ -140,12 +123,6 @@ public class PnCabecera extends JPanel implements Patron {
         c.setForeground(COLOR_GRIS_CLARO);
         pNick.add(c);
 
-        //icono3 = new ImageIcon(resUrlBase + "Iconos/diamante.png");
-        //imagenDiamante = new JLabel();
-        //imagenDiamante.setPreferredSize(new Dimension((int) (ANCHO * 0.02), (int) (ALTO * 0.04)));
-        //Icon ic = new ImageIcon(icono3.getImage().getScaledInstance((int) (ANCHO * 0.02), (int) (ALTO * 0.04), Image.SCALE_DEFAULT));
-        //imagenDiamante.setIcon(ic);
-
         iconMod = new IconMod(resUrlBase + "Iconos/diamante.png", (int) (ANCHO * 0.014), (int) (ALTO * 0.04));
         pNick.add(iconMod);
 
@@ -158,12 +135,6 @@ public class PnCabecera extends JPanel implements Patron {
         g.setFont(TITLE_FONT);
         g.setForeground(COLOR_GRIS_CLARO);
         pNick.add(g);
-
-        //icono4 = new ImageIcon(resUrlBase + "Iconos/nick.png");
-        //jNick = new JLabel();
-        //jNick.setPreferredSize(new Dimension((int) (ANCHO * 0.11), (int) (ALTO * 0.08)));
-        //Icon i = new ImageIcon(icono4.getImage().getScaledInstance((int) (ANCHO * 0.11), (int) (ALTO * 0.08), Image.SCALE_DEFAULT));
-        //jNick.setIcon(i);
 
         iconMod = new IconMod(resUrlBase + "Iconos/nick.png", (int) (ANCHO * 0.10), (int) (ALTO * 0.08));
         pNick.add(iconMod);

@@ -19,8 +19,12 @@ public class ControllerRepositoty {
     public ControllerRepositoty(Model model, View view) {
         this.model = model;
         this.view = view;
+        initComponents();
         initControllers();
         addListeners();
+    }
+
+    protected void initComponents() {
     }
 
     protected void initControllers() {

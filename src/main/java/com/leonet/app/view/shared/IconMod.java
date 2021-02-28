@@ -34,7 +34,7 @@ public class IconMod extends JPanel implements Patron {
         try {
             image = ImageIO.read(new File(pathImage));
         } catch (IOException ex) {
-            System.out.println("Error al cargar la imagen. CLASS: IconMod 37");
+            System.out.println("Error al cargar la imagen." + pathImage + " : CLASS: IconMod 37");
         }
         int w = this.getWidth();
         int h = this.getHeight();

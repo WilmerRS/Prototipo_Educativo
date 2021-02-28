@@ -11,6 +11,8 @@
 package com.leonet.app.model.databaseConection;
 
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +24,12 @@ import java.sql.Statement;
  *
  * @author WILMER
  */
-public class SentenciasSQL {
+public class QueriesSQL {
+
+    protected BasicDataSource basicDataSource = null;
+    public QueriesSQL(BasicDataSource basicDataSource){
+        this.basicDataSource = basicDataSource;
+    }
 
     /**
      * Permite hacer una sentencia SELECT [columnas] FROM [tablas]

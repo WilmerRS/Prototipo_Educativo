@@ -15,7 +15,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -33,9 +32,6 @@ public class PnLogin extends JPanel implements Patron {
     private JPanel pBotones;
     private JPanel pRedondo;
 
-    private ImageIcon icono;
-
-    private JLabel jIcono;
     private JLabel jUsuario;
     private JLabel jContrasenia;
     private JLabel jOlvido;
@@ -53,7 +49,6 @@ public class PnLogin extends JPanel implements Patron {
 
 
     public PnLogin() {
-//        super(0, COLOR_VERDE, COLOR_VERDE);
         initComponent();
     }
 
@@ -70,17 +65,16 @@ public class PnLogin extends JPanel implements Patron {
         pFondo.setPreferredSize(new Dimension((int) (ANCHO * 0.3), (int) (ALTO * 0.65)));
 
         pRedondo = new RoundedPanel(RADIO,COLOR_PRINCIPAL, COLOR_GRIS_BORDER);
-        pRedondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
+        pRedondo.setLayout(new BorderLayout(MARGEN_2*4, MARGEN_2*4));
         pFondo.add(pRedondo, BorderLayout.CENTER);
 
         pEspacio = new JPanel();
-        pEspacio.setLayout(new BorderLayout(MARGEN * 3, MARGEN * 2));
-        pEspacio.setBackground(COLOR_PRINCIPAL);
+        pEspacio.setLayout(new BorderLayout());
+        pEspacio.setBackground(COLOR_AZUL_BOTON);
         pRedondo.add(pEspacio, BorderLayout.CENTER);
 
-        Patron.marginAll(pRedondo);
-        Patron.marginAll(pEspacio);
-        Patron.marginHorizontal(pFondo);
+        UIComponents.marginAll(pRedondo);
+        UIComponents.marginAll(pFondo);
 
         pCentral = new JPanel();
         pCentral.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
@@ -96,7 +90,7 @@ public class PnLogin extends JPanel implements Patron {
         titleLogin.setHorizontalAlignment(SwingConstants.CENTER);
         pnIcon.add(titleLogin, BorderLayout.NORTH);
 
-        IconMod iconMod = new IconMod(resUrlBase + "Iconos/login.png", (int) (ANCHO * 0.17),(int) (ALTO * 0.27));
+        IconMod iconMod = new IconMod(resUrlBase + "Iconos/login.png", (int) (ANCHO * 0.15),(int) (ALTO * 0.25));
         pnIcon.add(iconMod, BorderLayout.CENTER);
 
         jMensajeError = new JLabel("INGRESA TUS CREDENCIALES");
@@ -118,7 +112,7 @@ public class PnLogin extends JPanel implements Patron {
 
         jUsuario = new JLabel("Usuario o correo electrónico:");
         jUsuario.setFont(SUBTITlE3_FONT);
-        jUsuario.setForeground(COLOR_OSCURO_TITULOS);
+        jUsuario.setForeground(COLOR_GRIS_OSCURO);
 
         cUsuario = new TextField(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.07)), "");
 
@@ -132,7 +126,7 @@ public class PnLogin extends JPanel implements Patron {
 
         jContrasenia = new JLabel("Contraseña:");
         jContrasenia.setFont(SUBTITlE3_FONT);
-        jContrasenia.setForeground(COLOR_OSCURO_TITULOS);
+        jContrasenia.setForeground(COLOR_GRIS_OSCURO);
 
         cContrasenia = new TextField(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.07)), "", true);
 
@@ -155,10 +149,10 @@ public class PnLogin extends JPanel implements Patron {
         pBotones.setLayout(new FlowLayout(FlowLayout.CENTER, MARGEN * 5, MARGEN_2));
         pBotones.setBackground(COLOR_PRINCIPAL);
 
-        btnCrearCuenta = new Button(new Dimension((int) (ANCHO * 0.08), (int) (ALTO * 0.05)), "Crear Cuenta", BOTON_CREAR_CUENTA);
+        btnCrearCuenta = new Button(new Dimension((int) (ANCHO * 0.08), (int) (ALTO * 0.05)), "Crear Cuenta", GRAY_BUTTON);
         pBotones.add(btnCrearCuenta);
 
-        btnIniciarSesion = new Button(new Dimension((int) (ANCHO * 0.09), (int) (ALTO * 0.05)), "Iniciar Sesion", BOTON_SIGUIENTE);
+        btnIniciarSesion = new Button(new Dimension((int) (ANCHO * 0.09), (int) (ALTO * 0.05)), "Iniciar Sesion", BLUE_BUTTON);
         pBotones.add(btnIniciarSesion);
 
         tempInfoContainer.add(pBotones, BorderLayout.CENTER);
@@ -191,9 +185,6 @@ public class PnLogin extends JPanel implements Patron {
         return btnCrearCuenta;
     }
 
-    public JLabel gerLabelOlvidoContrasenia() {
-        return jOlvido;
-    }
 
     public String getUsuario() {
         return cUsuario.getText();

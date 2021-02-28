@@ -1,6 +1,7 @@
 package com.leonet.app.view;
 
 import com.leonet.app.view.blog.PnBlog;
+import com.leonet.app.view.help.PnHelp;
 import com.leonet.app.view.home.PnLeonetApp;
 import com.leonet.app.view.login.PnLogin;
 import com.leonet.app.view.shared.Patron;
@@ -22,6 +23,7 @@ public class View extends JFrame implements Patron {
     private PnLogin pnLogin;
     private PnBlog pnBlog;
     private PnLeonetApp pnLeonetApp;
+    private PnHelp pnHelp;
 
 
     /**
@@ -56,9 +58,6 @@ public class View extends JFrame implements Patron {
 
     private void addCenterTabs() {
         pnLogin = new PnLogin();
-        pnBlog = new PnBlog();
-        pnLeonetApp = new PnLeonetApp();
-        // panel ayuda con su getter
 
         spMain = new ScrollPane(pnLogin,
                 ScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -83,16 +82,41 @@ public class View extends JFrame implements Patron {
         return pnHeader;
     }
 
+    public PnHelp getPnHelp() {
+        return pnHelp;
+    }
+
     public void updateTab(Component cmpnt, String title) {
-        spMain.setViewportView(cmpnt);
+        if (cmpnt == null) {
+            switch (title) {
+                case "Inicio":
+                    pnLeonetApp = new PnLeonetApp();
+                    spMain.setViewportView(pnLeonetApp);
+                    break;
+                case "Blog":
+                    pnBlog = new PnBlog();
+                    spMain.setViewportView(pnBlog);
+                    break;
+                case "Ayuda":
+                    pnHelp = new PnHelp();
+                    spMain.setViewportView(pnHelp);
+                    break;
+                case "Iniciar sesión":
+                    pnLogin = new PnLogin();
+                    spMain.setViewportView(pnLogin);
+                    break;
+            }
+        }else {
+            spMain.setViewportView(cmpnt);
+        }
         this.setTitle(this.title + title);
     }
 
-    public void userHasLogged(){
+    public void userHasLogged() {
         pnHeader.setLogin(true);
     }
 
-    public void userHasLoggedOut(){
+    public void userHasLoggedOut() {
         pnHeader.setLogin(false);
     }
 

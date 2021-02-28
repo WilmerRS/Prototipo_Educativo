@@ -13,18 +13,35 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * "Interface" que permite centralizar el diseño de la app
+ *
+ * @author Wilmer RS
  * @author Luis Alfredo
  */
 public interface Patron {
+    public static final String resUrlBase = "src/main/resources/";
 
     public static final int ANCHO = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public static final int ALTO = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 
-    public static final int BOTON_ANTERIOR = 0;
-    public static final int BOTON_SIGUIENTE = 1;
+    public static final int FONT_SIZE = (ALTO >= 800) ? 2 : 0;
+
+    public static final int ORANGE_BUTTON = 0;
+    public static final int BLUE_BUTTON = 1;
     public static final int BOTON_CABECERA = 2;
-    public static final int BOTON_CREAR_CUENTA = 3;
-    public static final int BOTON_OLVIDO_CONTRASENIA = 4;
+    public static final int GRAY_BUTTON = 3;
+    public static final int LABEL_BUTTON = 4;
+
+    public static final String ERROR_TYPE_MODAL = resUrlBase + "Iconos/error.png";
+    public static final String DONE_TYPE_MODAL = resUrlBase + "Iconos/done.png";
+
+    public static int ITEM_HEIGHT = (int) (ALTO * 0.05);
+
+    public static int MARGEN = (int) (ANCHO * 0.0070);
+    public static int MARGEN_2 = (int) (ANCHO * 0.00365);
+
+    public static int RADIO = (int) (ANCHO * 0.023);
+    public static int RADIO_BUTTON = (int) (ANCHO * 0.016);
 
     public static final Color COLOR_PRINCIPAL = new Color(255, 255, 255);
     public static final Color COLOR_GRIS_CLARO = new Color(245, 245, 245);
@@ -34,15 +51,19 @@ public interface Patron {
 
     public static final Color COLOR_GRIS_BORDER = new Color(205, 205, 205);
     public static final Color COLOR_GRIS_MEDIO = new Color(162, 162, 162);
-    public static final Color COLOR_OSCURO_TITULOS = new Color(67, 67, 67);
+    public static final Color COLOR_GRIS_OSCURO = new Color(67, 67, 67);
 
     public static final Color COLOR_VERDE = new Color(205, 227, 49);
+    public static final Color COLOR_VERDE_CLARO = new Color(229, 248, 93);
     public static final Color COLOR_VERDE_MEDIO = new Color(141, 161, 0);
     public static final Color COLOR_VERDE_OSCURO = new Color(76, 86, 4);
 
 
     public static final Color COLOR_ROJO = new Color(217, 84, 7);
-    public static final Color COLOR_NARANJA_BOTON = new Color(245, 158, 51);
+    public static final Color COLOR_NARANJA_CLARO = new Color(245, 164, 65);
+    public static final Color COLOR_NARANJA = new Color(245, 158, 51);
+    public static final Color COLOR_NARANJA_HOVER = new Color(241, 168, 76);
+    public static final Color COLOR_NARANJA_CLICK = new Color(241, 147, 31);
     public static final Color COLOR_NARANJA_BOTON_BORDER = new Color(212, 120, 7);
 
     public static final Color COLOR_AZUL_CLARO = new Color(64, 218, 250);
@@ -51,91 +72,33 @@ public interface Patron {
     public static final Color COLOR_AZUL_BOTON_CLICK = new Color(33, 216, 253);
     public static final Color COLOR_AZUL_BOTON_BORDER = new Color(30, 180, 212);
 
-    public static int MARGEN = (int) (ANCHO * 0.007); // ~5
-    public static int MARGEN_2 = (int) (ANCHO * 0.00291); // ~5
-    public static int RADIO = (int) (ANCHO * 0.011);  // ~10
 
-    /**
-        public static Font CIUDATELLA_BOLD = cambiarFuente("Ciutadella Rounded Bold", 18);
-        public static Font CIUDATELLA_LIGHT_ITALIC = cambiarFuente("Ciutadella Rounded Light Italic", 16);
-        public static Font CIUDATELLA_LIGHT = cambiarFuente("Ciutadella Rounded Light", 16);
+    public static Font TITLE_FONT = addFonts("Ciutadella Rounded Bold", 16 + FONT_SIZE);
+    public static Font BUTTON_TEXT_FONT = addFonts("Ciutadella Rounded Bold", 16 + FONT_SIZE);
+    public static Font SUBTITlE1_FONT = addFonts("Ciutadella Rounded Bold", 14 + FONT_SIZE);
+    public static Font SUBTITlE2_FONT = addFonts("Ciutadella Rounded Medium", 14 + FONT_SIZE);
+    public static Font SUBTITlE3_FONT = addFonts("Ciutadella Rounded Light", 14 + FONT_SIZE);
+    public static Font CONTENT_FONT = addFonts("Ciutadella Rounded Regular", 12 + FONT_SIZE);
+    public static Font CONTENT_ITALIC_FONT = addFonts("Ciutadella Rounded Regular Italic", 12 + FONT_SIZE);
+    public static Font SUBTEXT_FONT = addFonts("Ciutadella Rounded Light", 10 + FONT_SIZE);
 
-        public static Font CIUDATELLA_MEDIUM_ITALIC = cambiarFuente("Ciutadella Rounded Medium Italic", 18);
-        public static Font CIUDATELLA_MEDIUM = cambiarFuente("Ciutadella Rounded Medium", 16);
-        public static Font CIUDATELLA_REGULAR_ITALIC = cambiarFuente("Ciutadella Rounded Regular Italic", 12);
-        public static Font CIUDATELLA_REGULAR = cambiarFuente("Ciutadella Rounded Regular", 12);
-    */
-
-    public static Font TITLE_FONT = cambiarFuente("Ciutadella Rounded Bold", 18);
-    public static Font BUTTON_TEXT_FONT = cambiarFuente("Ciutadella Rounded Bold", 18);
-    public static Font SUBTITlE1_FONT = cambiarFuente("Ciutadella Rounded Bold", 16);
-    public static Font SUBTITlE2_FONT = cambiarFuente("Ciutadella Rounded Medium", 16);
-    public static Font SUBTITlE3_FONT = cambiarFuente("Ciutadella Rounded Light", 16);
-    public static Font CONTENT_FONT = cambiarFuente("Ciutadella Rounded Regular", 14);
-    public static Font CONTENT_ITALIC_FONT = cambiarFuente("Ciutadella Rounded Regular Italic", 14);
-    public static Font SUBTEXT_FONT = cambiarFuente("Ciutadella Rounded Light", 12);
-
-    public static final String resUrlBase = "src/main/resources/";
 
     /**
      * NO USAR FUERA PATRON
      *
-     * @param font
-     * @param px
+     * @param fontName
+     * @param pxFontSize
      * @return
      */
-    public static Font cambiarFuente(String font, int px) {
+    public static Font addFonts(String fontName, int pxFontSize) {
         Font fuente = null;
         InputStream myStream;
         try {
-            myStream = new BufferedInputStream(new FileInputStream(resUrlBase + "fonts/" + font + ".ttf"));
+            myStream = new BufferedInputStream(new FileInputStream(resUrlBase + "fonts/" + fontName + ".ttf"));
             fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
-            fuente = fuente.deriveFont(Font.PLAIN, px);
+            fuente = fuente.deriveFont(Font.PLAIN, pxFontSize);
         } catch (FontFormatException | IOException ex) {
         }
         return fuente;
-    }
-
-    public static void marginBottom(JPanel panel){
-        JPanel temp = new JPanel();
-        temp.setOpaque(false);
-        temp.setPreferredSize(new Dimension(0, 0));
-        panel.add(temp, BorderLayout.SOUTH);
-    }
-
-    public static void marginTop(JPanel panel){
-        JPanel temp = new JPanel();
-        temp.setOpaque(false);
-        temp.setPreferredSize(new Dimension(0, 0));
-        panel.add(temp, BorderLayout.NORTH);
-    }
-
-    public static void marginLeft(JPanel panel){
-        JPanel temp = new JPanel();
-        temp.setOpaque(false);
-        temp.setPreferredSize(new Dimension(0, 0));
-        panel.add(temp, BorderLayout.WEST);
-    }
-
-    public static void marginRight(JPanel panel){
-        JPanel temp = new JPanel();
-        temp.setOpaque(false);
-        temp.setPreferredSize(new Dimension(0, 0));
-        panel.add(temp, BorderLayout.EAST);
-    }
-
-    public static void marginAll(JPanel panel){
-        marginTop(panel);
-        marginBottom(panel);
-        marginLeft(panel);
-        marginRight(panel);
-    }
-    public static void marginHorizontal(JPanel panel){
-        marginLeft(panel);
-        marginRight(panel);
-    }
-    public static void marginVertical(JPanel panel){
-        marginTop(panel);
-        marginBottom(panel);
     }
 }
