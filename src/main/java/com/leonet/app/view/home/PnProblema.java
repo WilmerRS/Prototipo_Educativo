@@ -11,13 +11,16 @@ package com.leonet.app.view.home;
 
 import com.leonet.app.controller.problemsController.listProblem.ListProblemController;
 import com.leonet.app.model.problems.itemsListProblem.ItemList;
+import com.leonet.app.view.home.problems.code.PnCalculator;
 import com.leonet.app.view.home.problems.listProblem.PnListProblem;
 import com.leonet.app.view.shared.*;
 import com.leonet.app.view.shared.ScrollPane;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.stream.Collector;
 import javax.swing.*;
 
 /**
@@ -49,6 +52,7 @@ public class PnProblema extends JPanel implements Patron {
     private ScrollPane jScroll;
 
     private PnListProblem pnListProblem;
+    private PnCalculator pnCalculator;
 
     private int MAX_LINES_DEF_PROBLEM = 200;
 
@@ -111,12 +115,12 @@ public class PnProblema extends JPanel implements Patron {
 
         UIComponents.marginVertical(pnDefProblem);
 
-        /**textDefProblem = new TextPane("", COLOR_PRINCIPAL);
-        spDefProblem = new ScrollPane(textDefProblem,
-                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        textDefProblem = new TextPane("", COLOR_PRINCIPAL);
+         spDefProblem = new ScrollPane(textDefProblem,
+         JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+         JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        pnDefProblem.add(spDefProblem, BorderLayout.CENTER);*/
+         pnDefProblem.add(spDefProblem, BorderLayout.CENTER);
         pContenido.add(pnDefProblem, BorderLayout.NORTH);
 
         pCentral.add(pContenido);
@@ -125,18 +129,43 @@ public class PnProblema extends JPanel implements Patron {
     }
 
     public void updateDefProblem(String text, int linesCount) {
+        textDefProblem.setText(text);
         pnDefProblem.setPreferredSize(new Dimension(0, linesCount));
+        /*pnDefProblem.setPreferredSize(new Dimension(0, linesCount));
         textDefProblem = new TextPane(text, COLOR_PRINCIPAL);
         spDefProblem = new ScrollPane(textDefProblem,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        pnDefProblem.add(spDefProblem, BorderLayout.CENTER);
+        pnDefProblem.add(spDefProblem, BorderLayout.CENTER);*/
     }
 
-    public void loadItemListProblem(ArrayList<ItemList> itemLists) {
-        pnListProblem = new PnListProblem(itemLists);
+    public void loadItemListProblem(ArrayList<ItemList> itemLists, ArrayList<Integer> indentation) {
+
+        /** Collections.shuffle(itemLists); -> Activar en prod*/
+        if(pnCalculator != null){
+            pCentral.remove(pnCalculator);
+        }
+        if(pnListProblem != null){
+            pCentral.remove(pnListProblem);
+        }
+        pnListProblem = new PnListProblem(itemLists, indentation);
         pCentral.add(pnListProblem);
+    }
+
+    public void loadCalculatorProblem(){
+        if(pnCalculator != null){
+            pCentral.remove(pnCalculator);
+        }
+        if(pnListProblem != null){
+            pCentral.remove(pnListProblem);
+        }
+        pnCalculator = new PnCalculator();
+        pCentral.add(pnCalculator);
+    }
+
+    public PnCalculator getPnCalculator() {
+        return pnCalculator;
     }
 
     public TextPane getTextDefProblem() {

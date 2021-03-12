@@ -22,6 +22,7 @@ public class PnItemList extends JPanel implements Patron {
     private JLabel lbTextItem;
 
     private int widthItem;
+    private int indentation;
 
     private boolean active = false;
 
@@ -29,17 +30,18 @@ public class PnItemList extends JPanel implements Patron {
     public volatile int myY = 0;
     private JPanel pnIdItem;
 
-    public PnItemList(int currentPosition,int correctPosition, ItemList itemList) {
+    public PnItemList(int currentPosition,int correctPosition, ItemList itemList, int indentation) {
         this.currentPosition = currentPosition;
         this.correctPosition = correctPosition;
         this.itemList = itemList;
+        this.indentation = indentation;
         this.widthItem = UIComponents.getTextWidth(itemList.getTextItem(), CONTENT_FONT);
         initComponents();
     }
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        this.setBounds(0, currentPosition * (ITEM_HEIGHT + MARGEN_2), widthItem + 95, ITEM_HEIGHT);
+        this.setBounds((int)(indentation*ITEM_HEIGHT), currentPosition * (ITEM_HEIGHT + MARGEN_2), widthItem + 95, ITEM_HEIGHT);
         this.setOpaque(false);
 
         pnBackground = new RoundedPanel(RADIO_BUTTON, itemList.getBackgroundColor(), itemList.getBackgroundColor());

@@ -24,9 +24,7 @@ import com.leonet.app.view.View;
 public class Controller extends ControllerRepositoty {
 
     // Controllers
-    private HeaderController headerController;
-    private UserController userController;
-    private ProblemsController problemsController;
+
 
     /**
      * Permite construir el controlador principal, que une el la interfaz con el modelo

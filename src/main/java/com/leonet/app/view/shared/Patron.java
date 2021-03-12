@@ -31,6 +31,7 @@ public interface Patron {
     public static final int BOTON_CABECERA = 2;
     public static final int GRAY_BUTTON = 3;
     public static final int LABEL_BUTTON = 4;
+    public static final int WHITE_BUTTON = 5;
 
     public static final String ERROR_TYPE_MODAL = resUrlBase + "Iconos/error.png";
     public static final String DONE_TYPE_MODAL = resUrlBase + "Iconos/done.png";
@@ -60,6 +61,9 @@ public interface Patron {
 
 
     public static final Color COLOR_ROJO = new Color(217, 84, 7);
+    public static final Color COLOR_ROJO_SUAVE = new Color(252, 123, 91);
+    public static final Color COLOR_ROJO_MEDIO = new Color(252, 92, 60);
+
     public static final Color COLOR_NARANJA_CLARO = new Color(245, 164, 65);
     public static final Color COLOR_NARANJA = new Color(245, 158, 51);
     public static final Color COLOR_NARANJA_HOVER = new Color(241, 168, 76);
@@ -73,9 +77,11 @@ public interface Patron {
     public static final Color COLOR_AZUL_BOTON_BORDER = new Color(30, 180, 212);
 
 
+    public static Font TITLE_BIG_FONT = addFonts("Ciutadella Rounded Bold", 20 + FONT_SIZE);
     public static Font TITLE_FONT = addFonts("Ciutadella Rounded Bold", 16 + FONT_SIZE);
     public static Font BUTTON_TEXT_FONT = addFonts("Ciutadella Rounded Bold", 16 + FONT_SIZE);
     public static Font SUBTITlE1_FONT = addFonts("Ciutadella Rounded Bold", 14 + FONT_SIZE);
+    public static Font SUBTITlE1_5_FONT = addFonts("Ciutadella Rounded Bold", 13 + FONT_SIZE);
     public static Font SUBTITlE2_FONT = addFonts("Ciutadella Rounded Medium", 14 + FONT_SIZE);
     public static Font SUBTITlE3_FONT = addFonts("Ciutadella Rounded Light", 14 + FONT_SIZE);
     public static Font CONTENT_FONT = addFonts("Ciutadella Rounded Regular", 12 + FONT_SIZE);

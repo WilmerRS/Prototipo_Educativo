@@ -10,7 +10,7 @@ import java.util.Random;
  * Static methods to create UI components with common behaviours, layouts
  * or colors
  */
-public class UIComponents implements  Patron{
+public class UIComponents implements Patron {
     public static void marginBottom(JPanel panel) {
         JPanel temp = new JPanel();
         temp.setOpaque(false);
@@ -56,7 +56,7 @@ public class UIComponents implements  Patron{
         marginBottom(panel);
     }
 
-    public static JPanel lineSeparator(int pxHeight, Color lineColor){
+    public static JPanel lineSeparator(int pxHeight, Color lineColor) {
         JPanel tempLinea = new JPanel((new BorderLayout(MARGEN_2, MARGEN_2)));
         tempLinea.setBackground(COLOR_PRINCIPAL);
         JPanel pLinea = new JPanel();
@@ -67,16 +67,18 @@ public class UIComponents implements  Patron{
         return tempLinea;
     }
 
-    public static int getTextWidth(String text, Font font){
+    public static int getTextWidth(String text, Font font) {
+        text = text.replace(" ", "::");
         AffineTransform affinetransform = new AffineTransform();
-        FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
-        return (int)(font.getStringBounds(text, frc).getWidth());
+        FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
+        return (int) (font.getStringBounds(text, frc).getWidth());
     }
 
-    public static int getTextHeight (String text, Font font){
+    public static int getTextHeight(String text, Font font) {
+        text = text.replace(" ", "::");
         AffineTransform affinetransform = new AffineTransform();
-        FontRenderContext frc = new FontRenderContext(affinetransform,true,true);
-        return (int)(font.getStringBounds(text, frc).getHeight());
+        FontRenderContext frc = new FontRenderContext(affinetransform, true, true);
+        return (int) (font.getStringBounds(text, frc).getHeight());
     }
 
     public static Color getRandomColor() {
@@ -87,7 +89,16 @@ public class UIComponents implements  Patron{
         return new Color(red, green, blue);
     }
 
-    private UIComponents(){}
+    public static Color getShadowColor(Color color) {
+        int delta = 20;
+        int red = ((color.getRed() - delta) >= 0) ? color.getRed() - delta : 0;
+        int green = ((color.getGreen() - delta) >= 0) ? color.getGreen() - delta : 0;
+        int blue = ((color.getBlue() - delta) >= 0) ? color.getBlue() - delta : 0;
+        return new Color(red, green, blue);
+    }
+
+    private UIComponents() {
+    }
 
 
 }

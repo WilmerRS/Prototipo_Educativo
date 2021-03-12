@@ -7,16 +7,23 @@ import java.util.ArrayList;
 public class ProblemList extends ProblemRepository {
     private final String PROBLEM_TYPE = "ITEMS_LIST";
     private ArrayList<ItemList> itemListsArray;
+    private ArrayList<Integer> indentation;
+
 
     public ProblemList(String contextProblem, String exampleProblem,
-                       String definitionProblem, int pointsEarned,
+                       String definitionProblem, int rewardCoin, double percentageCompletion,
                        int linesContext, int linesExample, int linesDefProblem,
-                       ArrayList<ItemList> itemListsArray) {
+                       ArrayList<ItemList> itemListsArray,
+                       ArrayList<Integer> indentation) {
         super(contextProblem, exampleProblem, definitionProblem,
-                pointsEarned, linesContext, linesExample, linesDefProblem);
+                rewardCoin, percentageCompletion, linesContext, linesExample, linesDefProblem);
         this.itemListsArray = itemListsArray;
+        this.indentation = indentation;
     }
 
+    public ArrayList<Integer> getIndentation() {
+        return indentation;
+    }
 
     public String getPROBLEM_TYPE() {
         return PROBLEM_TYPE;

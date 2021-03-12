@@ -26,7 +26,7 @@ public class LoadingBar extends JPanel implements Patron {
         this.dimension = barDimension;
         this.title = title;
         if(pointAdvance < pointLimit){
-            this.pointAdvance = pointAdvance;
+            this.pointAdvance = pointAdvance + 100;
             this.pointLimit = pointLimit;
         }else{
             this.pointAdvance = 0;
@@ -85,11 +85,12 @@ public class LoadingBar extends JPanel implements Patron {
 
         JPanel pnLabelPercentage = new JPanel(new BorderLayout());
         pnLabelPercentage.setBackground(COLOR_PRINCIPAL);
-        pnLabelPercentage.setPreferredSize(new Dimension((int) (ANCHO * 0.04), 0));
+        pnLabelPercentage.setPreferredSize(new Dimension((int) (ANCHO * 0.048), 0));
 
         lbPercentage = new JLabel();
         lbPercentage.setFont(CONTENT_FONT);
         lbPercentage.setForeground(COLOR_GRIS_OSCURO);
+        lbPercentage.setHorizontalAlignment(SwingConstants.RIGHT);
         pnLabelPercentage.add(lbPercentage);
 
         increasePoints(0);
@@ -98,17 +99,20 @@ public class LoadingBar extends JPanel implements Patron {
         this.add(rpBackgroundBorder, BorderLayout.CENTER);
     }
 
-    private boolean increasePercentage(float increasePercentage) {
+    public boolean increasePercentage(float increasePercentage) {
         if (increasePercentage < 0 || increasePercentage > 100) {
             return false;
         }
+        // pointAdvance = (int)(increasePercentage);
         int currentPercentage = (int) (PROGRESS_PERCENTAGE * (increasePercentage / 100));
         if (PROGRESS_PERCENTAGE - currentPercentage < 0) currentPercentage = 0;
 
         BorderLayout bl = (BorderLayout) pContainerBar.getLayout();
-        System.out.println(currentPercentage);
+        // System.out.println(currentPercentage);
         bl.setHgap(PROGRESS_PERCENTAGE - currentPercentage);
         pContainerBar.setLayout(bl);
+        pContainerBar.repaint();
+        // updatePointsLabel();
         return true;
     }
 
@@ -116,13 +120,22 @@ public class LoadingBar extends JPanel implements Patron {
         if (pointAdvance + points > pointLimit) {
             return false;
         }
-        pointAdvance += points;
+
+        pointAdvance = points;
         boolean done = increasePercentage((pointAdvance * 100) / pointLimit);
         if (!done) {
             return false;
         }
         updatePointsLabel();
         return true;
+    }
+
+    public void setPointAdvance(int pointAdvance) {
+        this.pointAdvance = pointAdvance;
+    }
+
+    public void setPointLimit(int pointLimit) {
+        this.pointLimit = pointLimit;
     }
 
     private void updatePointsLabel() {

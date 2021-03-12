@@ -72,24 +72,24 @@ public class PnContexto extends JPanel implements Patron {
 
         pContexto = new JPanel(new BorderLayout(MARGEN, MARGEN));
         pContexto.setBackground(COLOR_VERDE);
-        pContexto.setPreferredSize(new Dimension(0,MAX_LINES_CONTEXTO));
+        pContexto.setPreferredSize(new Dimension(0, MAX_LINES_CONTEXTO));
 
         jTituloContexto = new JLabel("CONTEXTO");
         jTituloContexto.setFont(TITLE_FONT);
         jTituloContexto.setForeground(COLOR_VERDE_OSCURO);
         pContexto.add(jTituloContexto, BorderLayout.NORTH);
 
-        /**textContexto = new TextPane("", COLOR_VERDE);
+        textContexto = new TextPane("", COLOR_VERDE);
 
         spContexto = new ScrollPane(textContexto,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        pContexto.add(spContexto, BorderLayout.CENTER);**/
+        pContexto.add(spContexto, BorderLayout.CENTER);
 
         pContenido.add(pContexto);
 
         pnContainerEjemplo = new JPanel(new BorderLayout(MARGEN, MARGEN));
-        pnContainerEjemplo.setPreferredSize(new Dimension(0,MAX_LINES_EJEMPLO));
+        pnContainerEjemplo.setPreferredSize(new Dimension(0, MAX_LINES_EJEMPLO));
         pnContainerEjemplo.setBackground(COLOR_VERDE);
         UIComponents.marginTop(pnContainerEjemplo);
 
@@ -101,13 +101,13 @@ public class PnContexto extends JPanel implements Patron {
         jTituloEjemplo.setForeground(COLOR_VERDE_OSCURO);
         pEjemplo.add(jTituloEjemplo, BorderLayout.NORTH);
 
-        /**textEjemplo = new TextPane("", COLOR_VERDE);
+        textEjemplo = new TextPane("", COLOR_VERDE);
 
         spEjemplo = new ScrollPane(textEjemplo,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        pEjemplo.add(spEjemplo, BorderLayout.CENTER);*/
+        pEjemplo.add(spEjemplo, BorderLayout.CENTER);
         pnContainerEjemplo.add(pEjemplo);
 
         pContenido.add(pnContainerEjemplo);
@@ -118,25 +118,31 @@ public class PnContexto extends JPanel implements Patron {
         this.add(pFondo);
     }
 
-    public void updateContext(String text, int linesCount){
-        pContexto.setPreferredSize(new Dimension(0,linesCount));
+    public void updateContext(String text, int linesCount) {
+        textContexto.setText(text);
+        pContexto.setPreferredSize(new Dimension(0, linesCount));
+        /*pContexto.setPreferredSize(new Dimension(0,linesCount));
         textContexto = new TextPane(text, COLOR_VERDE);
 
         spContexto = new ScrollPane(textContexto,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        pContexto.add(spContexto, BorderLayout.CENTER);
+        pContexto.add(spContexto, BorderLayout.CENTER);*/
     }
 
-    public void updateExample(String text, int linesCount){
-        pnContainerEjemplo.setPreferredSize(new Dimension(0,linesCount));
+    public void updateExample(String text, int linesCount) {
+        textEjemplo.setText(text);
+        pnContainerEjemplo.setPreferredSize(new Dimension(0, linesCount));
+        /*pnContainerEjemplo.setPreferredSize(new Dimension(0,linesCount));
         textEjemplo = new TextPane(text, COLOR_VERDE);
 
         spEjemplo = new ScrollPane(textEjemplo,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
+        spEjemplo.repaint();
+        spEjemplo.updateUI();
         pEjemplo.add(spEjemplo, BorderLayout.CENTER);
+        pEjemplo.repaint();*/
     }
 
 

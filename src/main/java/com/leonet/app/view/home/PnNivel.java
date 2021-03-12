@@ -2,7 +2,7 @@
  * APP EDUCATIVA
  * Prototipo de una aplicacion para la enseñanza de programacion de a jovenes
  * y adultos, de manera didactica y sencilla.
- *
+ * <p>
  * WILMER RODRIGUEZ SANCHEZ
  * LUIS ALFREDO ACOSTA
  * 2021
@@ -22,27 +22,27 @@ import javax.swing.*;
  * @author Luis Alfredo
  */
 public class PnNivel extends JPanel implements Patron {
-    
+
     private JPanel pFondo;
     private JPanel pCentral;
     private JPanel pCentralComp;
     private JPanel pTitulo;
     private JPanel pLinea;
     private JPanel pMargenes;
-    
+
     private RoundedPanel pRedondo;
 
     private LoadingBar loadingBar;
-    
+
     private JLabel lbTitle;
     private JLabel lbGain;
     private JLabel lbChallenge;
     private JLabel lbFreeMode;
-    
+
     public PnNivel() {
         initComponents();
     }
-    
+
     private void initComponents() {
 
         this.setLayout(new BorderLayout());
@@ -87,9 +87,10 @@ public class PnNivel extends JPanel implements Patron {
         pCentralComp = new JPanel(new BorderLayout(MARGEN_2, MARGEN_2));
         pCentralComp.setBackground(COLOR_PRINCIPAL);
 
-        /**loadingBar = new LoadingBar(new Dimension(0, (int) (ALTO * 0.022)),
-                "Porcentaje de avance:", 25, 50);*/
+        loadingBar = new LoadingBar(new Dimension(0, (int) (ALTO * 0.022)),
+                "Porcentaje de avance:", 0, 0);
 
+        pCentralComp.add(loadingBar, BorderLayout.NORTH);
 
         JPanel pnGrid = new JPanel(new GridLayout(0, 1));
         pnGrid.setBackground(COLOR_PRINCIPAL);
@@ -113,17 +114,24 @@ public class PnNivel extends JPanel implements Patron {
         pCentralComp.add(pnGrid, BorderLayout.CENTER);
 
         pCentral.add(pCentralComp, BorderLayout.CENTER);
-        
+
         this.add(pFondo);
+    }
+
+    public void updateThemeInfo(String level, String theme) {
+        lbTitle.setText("NIVEL " + level + ": " + theme);
     }
 
     public LoadingBar getLoadingBar() {
         return loadingBar;
     }
 
-    public  void updateLoadingBar(int startingPoint, int finalPoint){
-        loadingBar = new LoadingBar(new Dimension(0, (int) (ALTO * 0.022)),
+    public void updateLoadingBar(/*int startingPoint, int finalPoint*/ double increasePoint) {
+        /*loadingBar = new LoadingBar(new Dimension(0, (int) (ALTO * 0.022)),
                 "Porcentaje de avance:", startingPoint, finalPoint);
-        pCentralComp.add(loadingBar, BorderLayout.NORTH);
+        pCentralComp.add(loadingBar, BorderLayout.NORTH);*/
+        /*loadingBar.setPointAdvance(startingPoint);
+        loadingBar.setPointLimit(finalPoint);*/
+        loadingBar.increasePoints((int)(increasePoint));
     }
 }

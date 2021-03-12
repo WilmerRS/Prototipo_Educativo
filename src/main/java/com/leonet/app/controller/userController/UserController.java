@@ -14,12 +14,10 @@ import com.leonet.app.controller.ControllerRepositoty;
 import com.leonet.app.controller.problemsController.AdvaceButtonsController;
 import com.leonet.app.controller.problemsController.ProblemsController;
 import com.leonet.app.model.Model;
+import com.leonet.app.model.user.UserRepository;
 import com.leonet.app.view.View;
 
 public class UserController extends ControllerRepositoty {
-
-    private ProblemsController problemsController;
-    private AdvaceButtonsController advaceButtonsController;
 
     /**
      * Permite construir el controlador de Login, que une el la interfaz con el modelo
@@ -45,11 +43,14 @@ public class UserController extends ControllerRepositoty {
 
     private void loginListener() {
         view.getPnLogin().getBtnInicarSesion().addActionListener(ae -> {
-            boolean isLogin = model.getUser().login(view.getPnLogin().getUsuario(), view.getPnLogin().getContrasenia());
+            UserRepository userProfileLogged = model.getUser().login(view.getPnLogin().getUsuario(), view.getPnLogin().getContrasenia());
             //System.out.println("Login = " + isLogin + "CLASS UserController 52");
-            if (/*isLogin*/ true) {
+            if (userProfileLogged != null) {
                 view.updateTab(view.getPnLeonetApp(), "Inicio");
                 view.userHasLogged();
+                view.getPnHeader().setUserProfile(userProfileLogged);
+                view.getPnHeader().updateHeader();
+                view.setUserNickname(view.getPnLogin().getUsuario());
                 loadProblems();
             } else {
                 view.getPnLogin().invalidCredentials();
@@ -59,6 +60,7 @@ public class UserController extends ControllerRepositoty {
 
     private void loadProblems() {
         problemsController = new ProblemsController(model, view);
+        problemsController.chooseTypeProblem();
         advaceButtonsController = new AdvaceButtonsController(model, view);
     }
 }

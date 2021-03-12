@@ -46,6 +46,7 @@ public class QueriesSQL {
             rs = stmt.executeQuery("SELECT " + columnas + " FROM " + tabla);
         } catch (SQLException ex) {
             System.out.println("ERROR AL REALIZAR LA CONSULTA SQL: " + ex);
+            System.out.println("--- " + columnas + "  ");
         }
         return rs;
     }
@@ -66,6 +67,7 @@ public class QueriesSQL {
             rs = stmt.executeQuery("SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion);
         } catch (SQLException ex) {
             System.out.println("ERROR AL REALIZAR LA CONSULTA SQL: " + ex);
+            System.out.println("--- " + columnas + "  " + condicion);
         }
         return rs;
     }
@@ -88,8 +90,21 @@ public class QueriesSQL {
             rs = stmt.executeQuery(query);
         } catch (SQLException ex) {
             System.out.println("ERROR AL REALIZAR LA CONSULTA SQL: " + ex);
+            System.out.println("------- " + query);
         }
         return rs;
+    }
+
+    public boolean update(String query, Connection conexion) {
+        try {
+            Statement stmt = conexion.createStatement();
+            stmt.executeUpdate(query);
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("ERROR AL REALIZAR LA CONSULTA SQL: " + ex);
+            System.out.println("------- " + query);
+        }
+        return false;
     }
 
 }

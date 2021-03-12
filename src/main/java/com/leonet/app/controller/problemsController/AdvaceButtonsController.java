@@ -33,7 +33,17 @@ public class AdvaceButtonsController extends ControllerRepositoty {
             if (correct) {
                 ResultDialog resultDialog = new ResultDialog(view, true, "Se ha completado el reto correctamente.", Patron.DONE_TYPE_MODAL);
                 resultDialog.setVisible(true);
-                view.getPnLeonetApp().getpNivel().getLoadingBar().increasePoints(25);
+                String userProfileNickname = view.getPnHeader().getUserProfile().getNickname();
+                double percentageCompletion = model.getProblems().getPercentageCompletion(userProfileNickname);
+                view.getPnLeonetApp().getpNivel().getLoadingBar().increasePoints((int) (percentageCompletion));
+                if (problemsController == null) {
+                    problemsController = new ProblemsController(model, view);
+                }
+                boolean nextProblemAvailable = model.getUser().advanceToNextTheme(userProfileNickname);
+                System.out.println("nextProblemAvailable "+ nextProblemAvailable);
+                if (nextProblemAvailable) {
+                    problemsController.chooseTypeProblem();
+                }
             } else {
                 ResultDialog resultDialog = new ResultDialog(view, true, "La respuesta no es correcta.", Patron.ERROR_TYPE_MODAL);
                 resultDialog.setVisible(true);

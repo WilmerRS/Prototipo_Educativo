@@ -1,0 +1,41 @@
+Tareas:
+	# Solucionar errores
+		1. Arreglar el error en los problemas de indentación.
+		   (ListProblemController)
+		2. Probar para encontrar errores nuevos.
+	# TOP 10
+		1. Hacer clase en modelo que permita guardar 
+		   a los usuarios (UserProfile) y el puesto 
+		   en el ranking: RankingUsers.
+		2. Hacer método que retorne el array de 
+		   usuarios (Consulta a bd) de RankingUsers.
+		3. Hacer Controlador (RankingController) que 
+		   actualice el panel TOP. Los controladores se
+		   declaran en ControllerRepositoty y se instancian
+		   donde se usan.
+		4. Crear método en panel TOP para tomar el array 
+		   de usuarios y los muestre en pantalla.
+	# Calculator
+		1. Hacer clase en modelo: Calculator, que guarde 
+		   la información del problema de calculadora. 
+		   Es similar a la clase ProblemList.
+		   Guardar en paquetes correspondientes.
+		2. Modificar método chooseProblemCode() para
+		   que utilice la clase anterior para guardar
+		   el objeto problema.
+		3. Hacer metodo en CalculatorControler que 
+		   permita verificar el ejercicio resuelto
+		   y llamarlo desde el evento del clic de SIGUIENTE.
+		   La respuesta correcta se debe encuenta en el
+		   objeto problema del item anterior.
+	# Problema final
+		1. Hacer Ventana Modal, en shared, que muestre un mensaje de 
+		   fin del prototipo, con una imagen y un mensaje.
+		   La ventana se debe cargar cuando case de la clase
+		   ProblemController entre por FINISH. Además debe 
+		   deshabilitar el botón de avance SIGUIENTE.
+	# Diagramas
+		1. Construir diagrama MER de la base de datos.
+		   
+		   
+		   

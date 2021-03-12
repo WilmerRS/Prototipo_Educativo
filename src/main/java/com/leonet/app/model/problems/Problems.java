@@ -3,10 +3,12 @@ package com.leonet.app.model.problems;
 import com.leonet.app.model.databaseConection.QueriesSQL;
 import com.leonet.app.model.problems.itemsListProblem.ItemList;
 import com.leonet.app.model.problems.itemsListProblem.ProblemList;
-import com.leonet.app.view.shared.Patron;
+import com.leonet.app.model.user.UserRepository;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import javax.swing.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Problems extends QueriesSQL {
@@ -17,57 +19,347 @@ public class Problems extends QueriesSQL {
         super(basicDataSource);
     }
 
-    public ProblemList initProblemList() {
-        String context = "<h4 style=\"text-align: center;\"><span style=\"color: #4C5604FF;\">&ldquo;Algoritmos 1&rdquo; (Algoritmos - Que son).</span></h4>\n" +
-                "<p><span style=\"color: #4C5604FF;\">Un algoritmo es una secuencia l&oacute;gica y finita de pasos que permite solucionar un problema o cumplir con un objetivo.<em> <a style=\"color: #4C5604FF;\" href=\"http://aprende.colombiaaprende.edu.co/sites/default/files/naspublic/curriculos_ex/n1g10_fproy/nivel1/programacion/unidad1/leccion1.html\">Aprende TIC</a>.</em></span></p>";
+    public ProblemList chooseProblemList(String username) {
+        String context = "";
+        String example = "";
+        String statement = "";
+        String problem = "";
+        String indentation = "";
+        int lineContext = 25;
+        int lineExample = 25;
+        int lineDefProblem = 25;
+        int rewardCoin = 0;
+        double percentageCompletion = 0;
 
-        ImageIcon icono = new ImageIcon(Patron.resUrlBase+"problemsImages/p1.png");
+        ResultSet rs = null;
+        Connection connection = null;
+        String query = "select context, " +
+                "       example, " +
+                "       lines_context, " +
+                "       lines_example, " +
+                "       percentage_completion, " +
+                "       reward_coin, " +
+                "       p.statement, " +
+                "       p.problem, " +
+                "       p.lines_problem, " +
+                "       p.indentation " +
+                "from theme " +
+                "join problem p on p.id = theme.problem " +
+                "join UserxTheme UT on theme.id = UT.theme " +
+                "join userProfile uP on UT.userProfile = uP.nickname " +
+                "where uP.nickname = LOWER('" + username + "'); ";
+        try {
+            connection = basicDataSource.getConnection();
+            rs = query(query, connection);
+            UserRepository userProfile = null;
+            try {
+                while (rs.next()) {
+                    context = rs.getString(1);
+                    example = rs.getString(2);
+                    lineContext *= rs.getInt(3);
+                    lineExample *= rs.getInt(4);
+                    percentageCompletion = rs.getFloat(5);
+                    rewardCoin = rs.getInt(6);
+                    statement = rs.getString(7);
+                    problem = rs.getString(8);
+                    lineDefProblem *= rs.getInt(9);
+                    indentation = rs.getString(10);
+                }
+            } catch (SQLException ex) {
+                System.out.println("err 57 Problem");
+            }
+        } catch (SQLException ex) {
+            return null;
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
 
-        String example = "<p><span style=\"color: #4c5604ff;\"><span style=\"font-weight: 400;\">Leonet viaj&oacute; de vacaciones a su pueblito de procedencia, y su mejor amigo lo espera en la capital. &Eacute;l </span><em><span style=\"font-weight: 400;\">quiere escribir una carta</span></em><span style=\"font-weight: 400;\"> a su amigo, para contarle todo lo que ha aprendido y jugado en sus vacaciones. Para esto, </span><em><span style=\"font-weight: 400;\">utiliza Word</span></em><span style=\"font-weight: 400;\">, una herramienta ofim&aacute;tica muy popular.</span></span></p>\n" +
-                "<h4 style=\"text-align: left;\">" +
-                "<span style=\"color: #4c5604ff;\">" +
-                "<span style=\"font-weight: 400;\">Ayuda a Leonet a </span><em><span style=\"font-weight: 400;\">escribir la carta</span></em><span style=\"font-weight: 400;\">:</span></span></h4>\n" +
-                "<p><span style=\"color: #4c5604ff;\">" +
-                "<span style=\"font-weight: 400;\">" +
-                "<img src=\"" + Patron.resUrlBase+"problemsImages/p1.png" +"\"/>" +
-                "</span></span></p>";
-        String defProblem = "<p><span style=\"font-weight: 400; color: #4c5604ff;\">En sus vacaciones, un d&iacute;a normal de Leonet se puede resumir como sigue: tiene permitido levantarse a las 9:00 a.m., ya que no tiene clases en la universidad. Al levantarse, tiende su cama, se dirige al ba&ntilde;o y se cepilla la boca y lava las manos. Sale de su habitaci&oacute;n y saluda a su familia.&nbsp;</span></p>\n" +
-                "<p><span style=\"font-weight: 400; color: #4c5604ff;\">A las 10:00 a.m. desayuna. al terminar, normalmente decide tomar un ba&ntilde;o, y arreglarse para salir donde sus amigos. A la 1:30 p.m., va a almorzar donde su abuela.&nbsp;</span></p>\n" +
-                "<p><span style=\"font-weight: 400; color: #4c5604ff;\">Leonet se inscribi&oacute; en un curso vacacional, lo que le toma toda la tarde de su d&iacute;a. En la noche, antes de acostarse, hace videollamada con su amigo de la capital. Al terminar, le desea las buenas noches a su familia, y se acuesta. Y as&iacute;, da paso a un nuevo d&iacute;a.</span></p>\n" +
-                "<p><span style=\"font-weight: 400; color: #4c5604ff;\">&iquest;C&oacute;mo crees que luce el d&iacute;a de Leonet, en forma de algoritmo?</span></p>";
-        int pointEarned = 10;
-        int lineContext = 140;
-        int lineExample = 200;
-        int lineDefProblem = 330;
-
-        ArrayList<ItemList> itemListsArray = new ArrayList<>();
-        ItemList a = new ItemList(0,  "Inicio");
-        ItemList b = new ItemList(1,  "Leonet se levanta a la 9:00 pm");
-        ItemList c = new ItemList(2,  "Tienda la cama");
-        ItemList d = new ItemList(3,  "Se dirige al baño y se cepilla la boca y lava las manos   ");
-        ItemList e = new ItemList(4,  "Se baña y se arregla");
-        ItemList f = new ItemList(5,  "Sale y juega con sus amigos");
-        ItemList g = new ItemList(6,  "A la 1:30pm almuerza donde su abuela");
-        ItemList h = new ItemList(7,  "En la tarde estudia");
-        ItemList i = new ItemList(8,  "Hace videollamada con su amigo de la capital");
-        ItemList j = new ItemList(9, "Se acuesta");
-        ItemList k = new ItemList(10, "Fin");
-
-        itemListsArray.add(b);
-        itemListsArray.add(a);
-        itemListsArray.add(c);
-        itemListsArray.add(d);
-        itemListsArray.add(e);
-        itemListsArray.add(f);
-        itemListsArray.add(g);
-        itemListsArray.add(h);
-        itemListsArray.add(i);
-        itemListsArray.add(j);
-        itemListsArray.add(k);
-
-        problemList = new ProblemList(context, example, defProblem,
-                pointEarned, lineContext, lineExample, lineDefProblem, itemListsArray);
+        ArrayList<ItemList> itemListsArray = createItemsList(problem);
+        ArrayList<Integer> indentationArray = defIndentation(indentation);
+        problemList = new ProblemList(
+                context,
+                example,
+                statement,
+                rewardCoin,
+                percentageCompletion,
+                lineContext,
+                lineExample,
+                lineDefProblem,
+                itemListsArray,
+                indentationArray
+        );
         return problemList;
+    }
+
+    public ProblemList chooseProblemCode(String username) {
+        String context = "";
+        String example = "";
+        String statement = "";
+        String problem = "";
+        String indentation = "";
+        int lineContext = 25;
+        int lineExample = 25;
+        int lineDefProblem = 25;
+        int rewardCoin = 0;
+        double percentageCompletion = 0;
+
+        ResultSet rs = null;
+        Connection connection = null;
+        String query = "select context, " +
+                "       example, " +
+                "       lines_context, " +
+                "       lines_example, " +
+                "       percentage_completion, " +
+                "       reward_coin, " +
+                "       p.statement, " +
+                "       p.problem, " +
+                "       p.lines_problem, " +
+                "       p.indentation " +
+                "from theme " +
+                "join problem p on p.id = theme.problem " +
+                "join UserxTheme UT on theme.id = UT.theme " +
+                "join userProfile uP on UT.userProfile = uP.nickname " +
+                "where uP.nickname = LOWER('" + username + "'); ";
+        try {
+            connection = basicDataSource.getConnection();
+            rs = query(query, connection);
+            UserRepository userProfile = null;
+            try {
+                while (rs.next()) {
+                    context = rs.getString(1);
+                    example = rs.getString(2);
+                    lineContext *= rs.getInt(3);
+                    lineExample *= rs.getInt(4);
+                    percentageCompletion = rs.getFloat(5);
+                    rewardCoin = rs.getInt(6);
+                    statement = rs.getString(7);
+                    problem = rs.getString(8);
+                    lineDefProblem *= rs.getInt(9);
+                    indentation = rs.getString(10);
+                }
+            } catch (SQLException ex) {
+                System.out.println("err 57 Problem");
+            }
+        } catch (SQLException ex) {
+            return null;
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
+
+        // ArrayList<ItemList> itemListsArray = createItemsList(problem);
+        //ArrayList<Integer> indentationArray = defIndentation(indentation);
+        problemList = new ProblemList(
+                context,
+                example,
+                statement,
+                rewardCoin,
+                percentageCompletion,
+                lineContext,
+                lineExample,
+                lineDefProblem,
+                null,
+                null
+        );
+        return problemList;
+    }
+
+
+    public float getPercentageCompletion(String nickname){
+        int percentageCompletion = -1;
+        Connection connection = null;
+        try {
+            connection = basicDataSource.getConnection();
+            String query = "select percentage_completion " +
+                    "from theme " +
+                    "join UserxTheme UT on theme.id = UT.theme " +
+                    "join userProfile uP on uP.nickname = UT.userProfile " +
+                    "where uP.nickname = lower('" + nickname + "');";
+            ResultSet rs = query(query, connection);
+            if (rs != null) {
+                rs.next();
+                return rs.getFloat("percentage_completion");
+            }
+            return -1;
+        } catch (SQLException ex) {
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
+        return -1;
+    }
+
+    public int getCountSubThemes(String nickname){
+        Connection connection = null;
+        try {
+            connection = basicDataSource.getConnection();
+            String query = "select count(*) " +
+                    "from theme " +
+                    "         join theme_category tc on theme.theme_category = tc.id " +
+                    "where tc.id = (select tc.id " +
+                    "               from theme_category as tc " +
+                    "                        join theme t on tc.id = t.theme_category " +
+                    "                        join UserxTheme UT on t.id = UT.theme " +
+                    "                        join userProfile uP on uP.nickname = UT.userProfile " +
+                    "               where uP.nickname = lower('" + nickname + "'));";
+            //System.out.println("count");
+            ResultSet rs = query(query, connection);
+            if (rs != null) {
+                rs.next();
+                return rs.getInt(1);
+            }
+            return -1;
+        } catch (SQLException ex) {
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
+        return -1;
+    }
+
+    public int getAmountProblemSolved(String nickname){
+        Connection connection = null;
+        try {
+            connection = basicDataSource.getConnection();
+            String query = "select indexTheme " +
+                    "from theme " +
+                    "    join UserxTheme UT on theme.id = UT.theme " +
+                    "    join userProfile uP on uP.nickname = UT.userProfile " +
+                    "where uP.nickname = lower('" + nickname + "');";
+            //System.out.println("amout");
+            ResultSet rs = query(query, connection);
+            if (rs != null) {
+                rs.next();
+                return rs.getInt(1) - 1;
+            }
+            return -1;
+        } catch (SQLException ex) {
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
+        return -1;
+    }
+
+    public String[] getThemeCategoryInfo(String nickname){
+        Connection connection = null;
+        try {
+            String[] themeCategory = new String[2];
+            connection = basicDataSource.getConnection();
+            String query = "select levelCategory, typeCategory " +
+                    "from theme_category " +
+                    "join theme t on theme_category.id = t.theme_category " +
+                    "join UserxTheme UT on t.id = UT.theme " +
+                    "join userProfile uP on uP.nickname = UT.userProfile " +
+                    "where uP.nickname = lower('" + nickname + "')";
+            //System.out.println("count");
+            ResultSet rs = query(query, connection);
+            if (rs != null) {
+                rs.next();
+                themeCategory[0] =  rs.getString(1);
+                themeCategory[1] =  rs.getString(2);
+                return themeCategory;
+            }
+            return null;
+        } catch (SQLException ex) {
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
+        return null;
+    }
+
+    private ArrayList<Integer> defIndentation(String indentationSrt) {
+        ArrayList<Integer> indentation = new ArrayList<>();
+        String[] in = indentationSrt.split(",");
+        for (int i = 0; i < in.length; i++) {
+            indentation.add(Integer.parseInt(in[i]));
+        }
+        return indentation;
+    }
+
+    private ArrayList<ItemList> createItemsList(String problem) {
+        ArrayList<ItemList> itemListsArray = new ArrayList<>();
+        String[] items = problem.split("\\*\\*\\*");
+        for (int i = 0; i < items.length; i++) {
+            // System.out.println("i =" +items[i]);
+            itemListsArray.add(createItem(items[i]));
+        }
+        return itemListsArray;
+    }
+
+    private ItemList createItem(String itemList) {
+        String[] item = itemList.split("\\*\\*");
+        // System.out.println("item = "+item[0]);
+        return new ItemList(Integer.parseInt(item[0]), item[1]);
+    }
+
+    public String getTypeProblem(String username) {
+        String query = "select type from type_problem " +
+                "join problem p on type_problem.id = p.type_problem " +
+                "join theme t on p.id = t.problem " +
+                "join UserxTheme UT on t.id = UT.theme " +
+                "join userProfile uP on UT.userProfile = uP.nickname " +
+                "where uP.nickname = LOWER('" + username + "') ";
+
+        Connection connection = null;
+        try {
+            connection = basicDataSource.getConnection();
+            ResultSet rs = query(query, connection);
+            if (rs != null) {
+                rs.next();
+                // System.out.println("type "+rs.getString("type") );
+                return rs.getString("type");
+            }
+        } catch (SQLException ex) {
+            //System.out.println("CL: User. Usuario inexistente por tipo:  "+loginType+"  " + user + "  " + password);
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                //System.out.println("Error en el cierre de la conexion  " + e);
+            }
+        }
+        return "";
     }
 
     public ProblemList getProblemList() {

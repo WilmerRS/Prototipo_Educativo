@@ -4,19 +4,22 @@ public class ProblemRepository {
     private String contextProblem;
     private String exampleProblem;
     private String definitionProblem;
-    private int pointsEarned;
+    private int rewardCoin;
     private int linesContext;
     private int linesExample;
     private int linesDefProblem;
+    private double percentageCompletion;
 
 
     public ProblemRepository(String contextProblem, String exampleProblem,
-                             String definitionProblem, int pointsEarned, int linesContext,
+                             String definitionProblem, int rewardCoin, double percentageCompletion,
+                             int linesContext,
                              int linesExample, int linesDefProblem) {
         this.contextProblem = contextProblem;
         this.exampleProblem = exampleProblem;
         this.definitionProblem = definitionProblem;
-        this.pointsEarned = pointsEarned;
+        this.rewardCoin = rewardCoin;
+        this.percentageCompletion = percentageCompletion;
         this.linesContext = linesContext;
         this.linesExample = linesExample;
         this.linesDefProblem = linesDefProblem;
@@ -46,7 +49,7 @@ public class ProblemRepository {
         return definitionProblem;
     }
 
-    public int getPointsEarned() {
-        return pointsEarned;
+    public int getRewardCoin() {
+        return rewardCoin;
     }
 }

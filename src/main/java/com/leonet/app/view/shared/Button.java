@@ -81,6 +81,13 @@ public class Button extends JButton implements Patron {
                 CLICK = COLOR_GRIS;
                 BORDER = COLOR_PRINCIPAL;
                 break;
+            case WHITE_BUTTON:
+                BACKGROUND = COLOR_PRINCIPAL;
+                FOREGROUND = COLOR_GRIS_MEDIO;
+                HOVER = COLOR_GRIS_CLARO;
+                CLICK = COLOR_GRIS;
+                BORDER = COLOR_GRIS_CLICK;
+                break;
             case GRAY_BUTTON:
                 BACKGROUND = COLOR_GRIS;
                 FOREGROUND = COLOR_VERDE_OSCURO;
@@ -190,7 +197,7 @@ public class Button extends JButton implements Patron {
                     lbTexto.setForeground(FOREGROUND);
                     pnFondo.actualizarPanel(RADIO_BUTTON, BACKGROUND, BACKGROUND);
                 } else {
-                    pnFondo.actualizarPanel(RADIO_BUTTON, HOVER, HOVER);
+                    pnFondo.actualizarPanel(RADIO_BUTTON, BACKGROUND, BACKGROUND);
                 }
             }
         });

@@ -4,9 +4,8 @@ import com.leonet.app.controller.ControllerRepositoty;
 import com.leonet.app.model.Model;
 import com.leonet.app.model.problems.itemsListProblem.ItemList;
 import com.leonet.app.model.problems.itemsListProblem.ProblemList;
+import com.leonet.app.model.user.UserRepository;
 import com.leonet.app.view.View;
-import com.leonet.app.view.home.PnLeonetApp;
-import com.leonet.app.view.home.PnProblema;
 import com.leonet.app.view.home.problems.listProblem.PnItemList;
 import com.leonet.app.view.home.problems.listProblem.PnListProblem;
 import com.leonet.app.view.shared.Patron;
@@ -17,22 +16,57 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class ListProblemController extends ControllerRepositoty {
+    private final String ITEMS_LIST = "ITEMS_LIST";
+    private final String FLOWCHART = "FLOWCHART";
+    private final String CODE = "CODE";
+
     public ListProblemController(Model model, View view) {
         super(model, view);
     }
 
-    protected void addListeners() {
-        loadProblem();
-        dragAndDropListener();
+    public void initProblemList(UserRepository userProfile, String type) {
+        loadProblem(userProfile, type);
     }
 
-    private void loadProblem() {
-        ProblemList pl = model.getProblems().initProblemList();
+    private void loadProblem(UserRepository userProfile, String type) {
+        ProblemList pl = model.getProblems().chooseProblemList(userProfile.getNickname());
         view.getPnLeonetApp().getpContexto().updateContext(pl.getContextProblem(), pl.linesContext());
         view.getPnLeonetApp().getpContexto().updateExample(pl.getExampleProblem(), pl.linesExample());
         view.getPnLeonetApp().getpProblema().updateDefProblem(pl.getDefinitionProblem(), pl.linesDefProblem());
-        view.getPnLeonetApp().getpNivel().updateLoadingBar(0, 50);
-        view.getPnLeonetApp().getpProblema().loadItemListProblem(pl.getItemListsArray());
+
+        switch (type) {
+            case ITEMS_LIST:
+                view.getPnLeonetApp().getpProblema().loadItemListProblem(pl.getItemListsArray(), pl.getIndentation());
+                view.getPnLeonetApp().repaint();
+                dragAndDropListener();
+                break;
+            case FLOWCHART:
+                break;
+            case CODE:
+                break;
+        }
+        updateInfoUserHeader(userProfile.getNickname());
+        updateThemeLevel(userProfile.getNickname());
+    }
+
+    private void updateThemeLevel(String nickname) {
+        double startingPoint = model.getProblems().getAmountProblemSolved(nickname);
+
+        double finalPoint = model.getProblems().getCountSubThemes(nickname);
+        double increasePoint = (startingPoint / finalPoint) * 100;
+        view.getPnLeonetApp().getpNivel().updateLoadingBar(increasePoint);
+
+        String[] themeCategory = model.getProblems().getThemeCategoryInfo(nickname);
+        String level = themeCategory[0];
+        String theme = themeCategory[1];
+        view.getPnLeonetApp().getpNivel().updateThemeInfo(level, theme);
+    }
+
+    private void updateInfoUserHeader(String nickname) {
+        UserRepository user = model.getUser().getUserProfile(nickname);
+        view.getPnHeader().setUserProfile(user);
+        view.getPnHeader().updateInfoUser();
+
     }
 
     public void dragAndDropListener() {
@@ -62,7 +96,11 @@ public class ListProblemController extends ControllerRepositoty {
                         finalPos = item.getLocation().y;
                         deltaY = finalPos / item.getHeight();
 
-                        item.setLocation(0, deltaY * (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                        PnListProblem pnListProblem = view.getPnLeonetApp().getpProblema().getPnListProblem();
+                        int index = (item.getLocation().y / (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                        int indentation = pnListProblem.getIndentation().get(index);
+                        item.setLocation((indentation * Patron.ITEM_HEIGHT), deltaY * (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+
                         finalPos = item.getLocation().y;
 
                         floatUp(finalPos, originalPos, pnItemListArray, item);
@@ -88,7 +126,9 @@ public class ListProblemController extends ControllerRepositoty {
                     boolean p = (item.myY + deltaY) > 0;
                     boolean q = (item.myY + deltaY) < lowerLimit;
                     if (p && q) {
-                        item.setLocation(0, item.myY + deltaY);
+                        int index = (item.getLocation().y / (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                        int indentation = pnListProblem.getIndentation().get(index);
+                        item.setLocation((indentation * Patron.ITEM_HEIGHT), item.myY + deltaY);
                     }
                 }
 
@@ -99,34 +139,43 @@ public class ListProblemController extends ControllerRepositoty {
         }
     }
 
-    private void floatUp(int finalPos, int originalPos, ArrayList<PnItemList> pnItemListArray, PnItemList item){
+    private void floatUp(int finalPos, int originalPos, ArrayList<PnItemList> pnItemListArray, PnItemList item) {
         if (finalPos > originalPos) {
             for (PnItemList item_f : pnItemListArray) {
                 boolean p = item_f.getLocation().y <= finalPos;
                 boolean s = item_f.getLocation().y > originalPos;
                 boolean q = item_f != item;
-                if (p && q  && s) {
-                    item_f.setLocation(0, item_f.getLocation().y - (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                if (p && q && s) {
+                    PnListProblem pnListProblem = view.getPnLeonetApp().getpProblema().getPnListProblem();
+                    int index = (item.getLocation().y / (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                    int indentation = pnListProblem.getIndentation().get(index);
+                    item_f.setLocation((indentation * Patron.ITEM_HEIGHT), item_f.getLocation().y - (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
                 }
             }
         }
     }
-    private void floatDown(int finalPos, int originalPos, ArrayList<PnItemList> pnItemListArray, PnItemList item){
+
+    private void floatDown(int finalPos, int originalPos, ArrayList<PnItemList> pnItemListArray, PnItemList item) {
         if (finalPos < originalPos) {
             for (PnItemList item_f : pnItemListArray) {
                 boolean p = item_f.getLocation().y >= finalPos;
                 boolean s = item_f.getLocation().y < originalPos;
                 boolean q = item_f != item;
                 if (p && q && s) {
-                    item_f.setLocation(0, item_f.getLocation().y + (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                    PnListProblem pnListProblem = view.getPnLeonetApp().getpProblema().getPnListProblem();
+                    int index = (item.getLocation().y / (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
+                    int indentation = pnListProblem.getIndentation().get(index);
+                    item_f.setLocation((indentation * Patron.ITEM_HEIGHT), item_f.getLocation().y + (Patron.ITEM_HEIGHT + Patron.MARGEN_2));
                 }
             }
         }
     }
 
     private boolean checkResult(ArrayList positions) {
-        ProblemList pl = model.getProblems().initProblemList();
-        for(ItemList item: pl.getItemListsArray()){
+        UserRepository userProfile = model.getUser().getUserProfile();
+        String username = userProfile.getNickname();
+        ProblemList pl = model.getProblems().chooseProblemList(username);
+        for (ItemList item : pl.getItemListsArray()) {
 
         }
         return false;

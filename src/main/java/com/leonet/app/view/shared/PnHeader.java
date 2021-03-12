@@ -9,6 +9,8 @@
  */
 package com.leonet.app.view.shared;
 
+import com.leonet.app.model.user.UserRepository;
+
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -25,7 +27,8 @@ public class PnHeader extends JPanel implements Patron {
     private JPanel pMargen;
 
 
-    private JLabel jIcono;
+    private JLabel textDiamante;
+    private JLabel textMoneda;
 
 
     private Button btnInicio;
@@ -35,7 +38,11 @@ public class PnHeader extends JPanel implements Patron {
     private Button btnAyuda;
     private final String TIPO;
 
-    private ImageIcon icono;
+    private IconMod diamante;
+    private IconMod moneda;
+    private UserIcon usuario;
+
+    private UserRepository userProfile;
 
     private boolean isLogin = false;
 
@@ -46,7 +53,7 @@ public class PnHeader extends JPanel implements Patron {
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension( 0, (int)(ALTO*0.095)));
+        this.setPreferredSize(new Dimension(0, (int) (ALTO * 0.095)));
 
         pFondo = new JPanel();
         pFondo.setLayout(new BorderLayout(MARGEN_2, MARGEN_2));
@@ -70,15 +77,9 @@ public class PnHeader extends JPanel implements Patron {
         pFondo.add(pFondoTodo, BorderLayout.CENTER);
 
         pCentral = new JPanel();
-        pCentral.setLayout(new FlowLayout(FlowLayout.CENTER, MARGEN * 3, MARGEN));
+        pCentral.setLayout(new FlowLayout(FlowLayout.CENTER, MARGEN, MARGEN));
         pCentral.setBackground(COLOR_PRINCIPAL);
         pFondoTodo.add(pCentral, BorderLayout.CENTER);
-
-        //icono = new ImageIcon(resUrlBase + "Iconos/logo1.png");
-        //jIcono = new JLabel();
-        // jIcono.setPreferredSize(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.07)));
-        // Icon icon = new ImageIcon(icono.getImage().getScaledInstance((int) (ANCHO * 0.04), (int) (ALTO * 0.07), Image.SCALE_DEFAULT));
-        //jIcono.setIcon(icon);
 
         IconMod iconMod = new IconMod(resUrlBase + "Iconos/logo1.png", (int) (ANCHO * 0.04), (int) (ALTO * 0.07));
         pCentral.add(iconMod);
@@ -88,21 +89,74 @@ public class PnHeader extends JPanel implements Patron {
         pCentral.add(btnInicio);
 
 
-        btnBlog = new Button(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.05)), "Blog", BOTON_CABECERA, (TIPO.equals("BLOG")));
+        btnBlog = new Button(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.05)), "Blog", BOTON_CABECERA, (TIPO.equals("BLOG")));
         pCentral.add(btnBlog);
 
-
-//        btnPvp = new Boton(new Dimension((int) (ANCHO*0.03), (int) (ALTO*0.03)), "PvP", BOTON_CABECERA);
-//        pCentral.add(btnPvp);
-
-//        btnModoCreador = new Boton(new Dimension((int) (ANCHO*0.08), (int) (ALTO*0.03)), "Modo Creador", BOTON_CABECERA);
-//        pCentral.add(btnModoCreador);
-//        
-        btnAyuda = new Button(new Dimension((int) (ANCHO * 0.05), (int) (ALTO * 0.05)), "Ayuda", BOTON_CABECERA, (TIPO.equals("AYUDA")));
+        btnAyuda = new Button(new Dimension((int) (ANCHO * 0.04), (int) (ALTO * 0.05)), "Ayuda", BOTON_CABECERA, (TIPO.equals("AYUDA")));
         pCentral.add(btnAyuda);
+
+        updateHeader();
 
         this.add(pFondo);
 
+    }
+
+    public void updateHeader() {
+        if (isLogin) {
+            btnPvp = new Button(new Dimension((int) (ANCHO * 0.03), (int) (ALTO * 0.05)), "PvP", BOTON_CABECERA);
+            pCentral.add(btnPvp);
+
+            btnModoCreador = new Button(new Dimension((int) (ANCHO * 0.09), (int) (ALTO * 0.05)), "Modo Creador", BOTON_CABECERA);
+            pCentral.add(btnModoCreador);
+
+            JPanel pTemp = new JPanel(new FlowLayout(FlowLayout.RIGHT, MARGEN, 0));
+            pTemp.setOpaque(false);
+            pCentral.add(pTemp);
+
+            JPanel pTemp1 = new JPanel(new BorderLayout(MARGEN, 0));
+            pTemp1.setOpaque(false);
+            pTemp.add(pTemp1);
+
+            diamante = new IconMod(resUrlBase + "Iconos/diamante.png", (int) (ANCHO * 0.014), (int) (ALTO * 0.04));
+            pTemp1.add(diamante, BorderLayout.WEST);
+
+            textDiamante = new JLabel(userProfile.getGem() + " .g");
+            textDiamante.setFont(BUTTON_TEXT_FONT);
+            textDiamante.setForeground(COLOR_GRIS_MEDIO);
+            pTemp1.add(textDiamante, BorderLayout.CENTER);
+
+            JPanel pTemp2 = new JPanel(new BorderLayout(MARGEN, 0));
+            pTemp2.setOpaque(false);
+            pTemp.add(pTemp2);
+
+            moneda = new IconMod(resUrlBase + "Iconos/moneda.png", (int) (ANCHO * 0.023), (int) (ALTO * 0.043));
+            pTemp2.add(moneda, BorderLayout.WEST);
+
+            textMoneda = new JLabel(userProfile.getCoin() + " .c");
+            textMoneda.setFont(BUTTON_TEXT_FONT);
+            textMoneda.setForeground(COLOR_GRIS_MEDIO);
+            pTemp2.add(textMoneda, BorderLayout.CENTER);
+
+
+            usuario = new UserIcon(userProfile.getNickname(), userProfile.getLevel());
+            pTemp.add(usuario);
+
+        }
+        pCentral.updateUI();
+    }
+
+    public void updateInfoUser() {
+        textDiamante.setText(userProfile.getGem() + " .g");
+        textMoneda.setText(userProfile.getCoin() + " .g");
+        usuario.updateUser(userProfile.getNickname(), userProfile.getLevel());
+    }
+
+    public UserRepository getUserProfile() {
+        return userProfile;
+    }
+
+    public void setUserProfile(UserRepository userProfile) {
+        this.userProfile = userProfile;
     }
 
     public void colorC(Color c) {
@@ -128,4 +182,6 @@ public class PnHeader extends JPanel implements Patron {
     public Button getBtnAyuda() {
         return btnAyuda;
     }
+
+
 }

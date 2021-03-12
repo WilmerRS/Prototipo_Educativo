@@ -10,11 +10,13 @@ import java.util.ArrayList;
 public class PnListProblem extends JPanel implements Patron {
     private ArrayList<ItemList> itemListArray;
     private ArrayList<PnItemList> pnItemListArray;
+    private ArrayList<Integer> indentation;
 
     private int itemCounts;
 
-    public PnListProblem(ArrayList<ItemList> itemListArray) {
+    public PnListProblem(ArrayList<ItemList> itemListArray, ArrayList<Integer> indentation) {
         this.itemListArray = itemListArray;
+        this.indentation = indentation;
         this.pnItemListArray = new ArrayList<>();
         this.itemCounts = itemListArray.size();
         initComponents();
@@ -28,9 +30,14 @@ public class PnListProblem extends JPanel implements Patron {
     }
 
     private void createPnList() {
+        this.removeAll();
+        pnItemListArray.removeAll(pnItemListArray);
         for (int i = 0; i < itemListArray.size(); i++) {
             ItemList item = itemListArray.get(i);
-            PnItemList pnItemList = new PnItemList(i , itemListArray.get(i).getId(), item);
+            // System.out.println("1 "+itemListArray.size() + "   2. "+indentation.size());
+            int temp1 =itemListArray.get(i).getId();
+            int temp2 = indentation.get(i);
+            PnItemList pnItemList = new PnItemList(i , temp1, item, temp2);
             pnItemListArray.add(pnItemList);
             this.add(pnItemList);
         }
@@ -55,6 +62,10 @@ public class PnListProblem extends JPanel implements Patron {
             }
         }
         return longestItem;
+    }
+
+    public ArrayList<Integer> getIndentation() {
+        return indentation;
     }
 
     public ArrayList<ItemList> getItemListArray() {

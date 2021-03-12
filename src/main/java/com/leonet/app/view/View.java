@@ -25,6 +25,7 @@ public class View extends JFrame implements Patron {
     private PnLeonetApp pnLeonetApp;
     private PnHelp pnHelp;
 
+    private String userNickname = "";
 
     /**
      * Inicia la interfaz
@@ -50,6 +51,7 @@ public class View extends JFrame implements Patron {
         this.add(pnBackgroug);
         pack();
     }
+
 
     private void addHeaderComponent() {
         pnHeader = new PnHeader("INICIO");
@@ -120,6 +122,13 @@ public class View extends JFrame implements Patron {
         pnHeader.setLogin(false);
     }
 
+    public String getUserNickname() {
+        return userNickname;
+    }
+
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
+    }
     public boolean isLogin() {
         return pnHeader.isLogin();
     }
